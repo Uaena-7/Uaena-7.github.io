@@ -4,6 +4,12 @@
   <meta charset="utf-8">
   
   
+  <meta name="description" content="用树状数组求中位数前言以下全是废话, 正篇请移步思路  
+在大一下终于是组好打 XCPC 的三人小队了, 另外两位是 yn 和 ydx 。  
+XCPC 所需要的最基本的 算法&amp;amp;数据结构 的知识面我们三人都还未全面覆盖，    
+于是乎我们三人各自开始了 充满激情的 加训。  
+正是这样一个" />
+  
 
   
   
@@ -11,14 +17,19 @@
   
   
   
-  <title>Uaena&#39;s Blog</title>
+  <title>用树状数组求中位数 | Uaena&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Uaena&#39;s Blog">
-<meta property="og:url" content="http://uaena-7.github.io/index.html">
+  <meta name="description" content="用树状数组求中位数前言以下全是废话, 正篇请移步思路   在大一下终于是组好打 XCPC 的三人小队了, 另外两位是 yn 和 ydx 。   XCPC 所需要的最基本的 算法&amp;数据结构 的知识面我们三人都还未全面覆盖，     于是乎我们三人各自开始了 充满激情的 加训。   正是这样一个加训的清晨, 我看不到一个好的题解去教如何用树状数组求中位数   自己苦苦挣扎了约莫 2 小时终于写">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用树状数组求中位数">
+<meta property="og:url" content="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/index.html">
 <meta property="og:site_name" content="Uaena&#39;s Blog">
+<meta property="og:description" content="用树状数组求中位数前言以下全是废话, 正篇请移步思路   在大一下终于是组好打 XCPC 的三人小队了, 另外两位是 yn 和 ydx 。   XCPC 所需要的最基本的 算法&amp;数据结构 的知识面我们三人都还未全面覆盖，     于是乎我们三人各自开始了 充满激情的 加训。   正是这样一个加训的清晨, 我看不到一个好的题解去教如何用树状数组求中位数   自己苦苦挣扎了约莫 2 小时终于写">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-08T23:02:37.061Z">
 <meta property="article:author" content="Wensheng Teng">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
   
   
@@ -62,17 +73,15 @@
 </header>
 
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main">
-  
-    <article id="post-用树状数组求中位数" class="post-用树状数组求中位数 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-用树状数组求中位数" class="post-用树状数组求中位数 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
         
         
   
-    <h1 class="entry-title">
-      <a class="article-title" href="/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/">用树状数组求中位数</a>
+    <h1 class="entry-title article-title">
+      用树状数组求中位数
     </h1>
   
 
@@ -140,57 +149,20 @@
 </article>
 
 
-
-
-
-
-  
-    <article id="post-Hello_World" class="post-Hello_World post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2025/03/22/Hello_World/">Hello World!</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/03/22/Hello_World/" data-id="cmafz4mzt0000t4er5xhuf3es" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World!"></a>Hello World!</h1><h2 id="我-是-谁-？"><a href="#我-是-谁-？" class="headerlink" title="我 是 谁 ？"></a>我 是 谁 ？</h2><p>我是 Uaena.</p>
-<p><del>Uaena 是谁？显然这就是我。</del></p>
-<p>准备开始写点 算竞的 题解？/游记？/日常？ Blog</p>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2025/03/22/Hello_World/">
-    <time datetime="2025-03-21T16:00:00.000Z" class="entry-date">
-        2025-03-22
-    </time>
-</a>
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
     
     
-    </footer>
-</article>
+        <span class="nav-next"><a href="/2025/03/22/Hello_World/" rel="next">Hello World! <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
 
 
 
 
 
 
-  
-  
 
 </div></div>
         <div id="secondary" class="widget-area" role="complementary">
