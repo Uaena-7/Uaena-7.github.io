@@ -27,7 +27,7 @@ XCPC 所需要的最基本的 算法&amp;amp;数据结构 的知识面我们三�
 <meta property="og:description" content="用树状数组求中位数前言以下全是废话, 正篇请移步思路   在大一下终于是组好打 XCPC 的三人小队了, 另外两位是 yn 和 ydx 。   XCPC 所需要的最基本的 算法&amp;数据结构 的知识面我们三人都还未全面覆盖，     于是乎我们三人各自开始了 充满激情的 加训。   正是这样一个加训的清晨, 我看不到一个好的题解去教如何用树状数组求中位数   自己苦苦挣扎了约莫 2 小时终于写">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-05-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-05-08T23:18:22.149Z">
+<meta property="article:modified_time" content="2025-05-09T02:22:07.822Z">
 <meta property="article:author" content="Wensheng Teng">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -88,7 +88,7 @@ XCPC 所需要的最基本的 算法&amp;amp;数据结构 的知识面我们三�
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmafznt4t00017werbdlw9phv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmag686wp00015ker39sz6a3s" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -124,7 +124,7 @@ XCPC 所需要的最基本的 算法&amp;amp;数据结构 的知识面我们三�
 <p><strong>怎的中位数还有两个？这对吗？</strong></p>
 <p>这不对，显然 7 根本不在原序列中。  </p>
 <p><strong>我们要从前往后找到第一个</strong> $presum_cnt[i]==$ $\lceil n/2 \rceil$，此时的 $i$ 就是我们要寻找的中位数</p>
-<p><strong>怎么去找到这样的 $i$ 呢？$presum_sum$ 是一个 1 的前缀和，显然是升序的，我们用二分查找。</strong></p>
+<p><strong>怎么去找到这样的 $i$ 呢？$presum_cnt$是一个 1 的前缀和，显然是升序的，我们用二分查找。</strong></p>
 <p>聪明的同学已经发现，$presum_cnt$ 可以用树状数组去维护 $cnt$ 得到。    </p>
 <p>这样子我们每次向序列插入新元素的时候，就只用 $O(logn)$ 的时间！</p>
 <p>我们可以看到数据大小是有$1e9$的，所以我们还需要进行离散化处理。</p>
