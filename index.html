@@ -79,7 +79,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmag686wp00015ker39sz6a3s" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmag6jls50001xcer46cf4dwk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -106,17 +106,17 @@
 <p>我们用 $cnt[i]$ 表示 $i$ 是否在这个序列中出现过，1 表示出现了，0 表示没出现</p>
 <p>我们遍历序列 $A$，将 $cnt[A[i]]$ 打上标记 1</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnt:  1 0 1 0 1 1 0 1 1</span><br><span class="line">index:1 2 3 4 5 6 7 8 9</span><br></pre></td></tr></table></figure>
-<p>我们再用 $presum_cnt$ 表示 $cnt$ 的前缀和</p>
+<p>我们再用 $presum\_cnt$ 表示 $cnt$ 的前缀和</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">presum_cnt:1 1 2 2 3 4 4 5 6</span><br><span class="line">index:     1 2 3 4 5 6 7 8 9</span><br></pre></td></tr></table></figure>
-<p>这时候 $presum_cnt[i]$ 的意义就是 <strong>小于等于 $i$ 的数在 A 中出现过的数量</strong>。  </p>
+<p>这时候 $presum\_cnt[i]$ 的意义就是 <strong>小于等于 $i$ 的数在 A 中出现过的数量</strong>。  </p>
 <p>中位数的意义是什么？是第 $\lceil n/2 \rceil$ 个小的数。  </p>
-<p>我们只要找到 $presum_cnt[i]==$ $\lceil n/2 \rceil$，此时的 $i$ 就是我们要寻找的中位数</p>
-<p>也就是样例中的 $presum_cnt[6]$ $==$ $presum_cnt[7]$ $==\lceil 7 \rceil==4$，$i=6,7$</p>
+<p>我们只要找到 $presum\_cnt[i]==$ $\lceil n/2 \rceil$，此时的 $i$ 就是我们要寻找的中位数</p>
+<p>也就是样例中的 $presum\_cnt[6]$ $==$ $presum\_cnt[7]$ $==\lceil 7 \rceil==4$，$i=6,7$</p>
 <p><strong>怎的中位数还有两个？这对吗？</strong></p>
 <p>这不对，显然 7 根本不在原序列中。  </p>
-<p><strong>我们要从前往后找到第一个</strong> $presum_cnt[i]==$ $\lceil n/2 \rceil$，此时的 $i$ 就是我们要寻找的中位数</p>
-<p><strong>怎么去找到这样的 $i$ 呢？$presum_cnt$是一个 1 的前缀和，显然是升序的，我们用二分查找。</strong></p>
-<p>聪明的同学已经发现，$presum_cnt$ 可以用树状数组去维护 $cnt$ 得到。    </p>
+<p><strong>我们要从前往后找到第一个</strong> $presum\_cnt[i]==$ $\lceil n/2 \rceil$，此时的 $i$ 就是我们要寻找的中位数</p>
+<p><strong>怎么去找到这样的 $i$ 呢？$presum\_cnt$是一个 1 的前缀和，显然是升序的，我们用二分查找。</strong></p>
+<p>聪明的同学已经发现，$presum\_cnt$ 可以用树状数组去维护 $cnt$ 得到。    </p>
 <p>这样子我们每次向序列插入新元素的时候，就只用 $O(logn)$ 的时间！</p>
 <p>我们可以看到数据大小是有$1e9$的，所以我们还需要进行离散化处理。</p>
 <p>然后，就没有然后了，贴上AC代码。时间复杂度是$O(nlog^2n)$</p>
@@ -160,7 +160,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/03/22/Hello_World/" data-id="cmag686wn00005kera44s4poa" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/03/22/Hello_World/" data-id="cmag6jls30000xcer9l250qrf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
