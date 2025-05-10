@@ -79,24 +79,18 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmahisz5g00041oer9zolex66" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmai67wyi000028er7hk0fl2o" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="P1877-HAOI2012-音量调节（到达性-DP）"><a href="#P1877-HAOI2012-音量调节（到达性-DP）" class="headerlink" title="P1877 [HAOI2012] 音量调节（到达性 DP）"></a>P1877 [HAOI2012] 音量调节（到达性 DP）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>清晨起来打水题，竟然普及-被卡住。细细思索，此题思路蛮妙，遂写一篇题解。</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1877">题目在这里</a>  </p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为每一次的音量调节我们 <strong>必须选择</strong> 升调或降调，所以我们可以设计状态 $dp[i][j]$ 表示在第 $i$ 次调音时，能否达到 $j$ 的音量。  </p>
-<p>$dp[i][j]=1$表示可以达到，$dp[i][j]=0$表示不可以达到。 </p>
-<p>如果$\sum_{i=0}^{maxLevel}dp[n][i]=0$那么就表示最后一次操作无论如何都无法到达，根据题意可以输出$-1$。  </p>
-<p>反之，$max\{i|dp[n][i]=1,i\in[0,maxLevel]\}$就是我们的可达最大音量。  </p>
-<p>那么如何动态规划呢？</p>
-<p>起始音量是我们的初始状态，即$dp[0][beginLevel]=1$。 </p>
-<p>可以发现，$dp[i][j]$只能从上一次调音升调或者降调得到，那么我们考虑这两种情况，便可以得到状态转移方程。    </p>
-<p>$dp[i][j]=dp[i-1][j-c[i]]||dp[i-1][j+c[i]]$，注意防止越界。  </p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">const int N = 50 + 7;</span><br><span class="line">const int M = 1000 + 7;</span><br><span class="line">int n, init, up, dp[N][M], a[N];</span><br><span class="line">int main() &#123;</span><br><span class="line">    ios::sync_with_stdio(0);</span><br><span class="line">    cin.tie(0), cout.tie(0);</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; init &gt;&gt; up;</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) cin &gt;&gt; a[i];</span><br><span class="line">    dp[0][init] = 1;</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt;= up; j++) &#123;</span><br><span class="line">            if (j - a[i] &gt;= 0 &amp;&amp; dp[i - 1][j - a[i]]) dp[i][j] = 1;</span><br><span class="line">            if (j + a[i] &lt;= up &amp;&amp; dp[i - 1][j + a[i]]) dp[i][j] = 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = up; i &gt;= 0; i--) &#123;</span><br><span class="line">        if (dp[n][i]) &#123;</span><br><span class="line">            cout &lt;&lt; i;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; -1;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="感谢观看"><a href="#感谢观看" class="headerlink" title="感谢观看~"></a>感谢观看~</h2>
+        <h1 id="P1877-HAOI2012-音量调节（到达性-DP）"><a href="#P1877-HAOI2012-音量调节（到达性-DP）" class="headerlink" title="P1877 [HAOI2012] 音量调节（到达性 DP）"></a>P1877 [HAOI2012] 音量调节（到达性 DP）</h1>
+        
+          <p class="article-more-link">
+            <a href="/2025/05/10/P1877-%5BHAOI2012%5D-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/#more" class="more-link">More <span class="meta-nav">→</span></a>
+          </p>
+        
       
     </div><!-- .entry-content -->
 
@@ -135,7 +129,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmahisz5d00011oerhhtu3ljg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmai67wys000428er8xro8rmv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -216,7 +210,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/03/22/Hello_World/" data-id="cmahisz5b00001oer0nqqcfnu" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/03/22/Hello_World/" data-id="cmai67wys000328er7gok1it7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 

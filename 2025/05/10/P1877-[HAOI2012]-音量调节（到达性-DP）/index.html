@@ -4,9 +4,7 @@
   <meta charset="utf-8">
   
   
-  <meta name="description" content="P1877 [HAOI2012] 音量调节（到达性 DP）前言清晨起来打水题，竟然普及-被卡住。细细思索，此题思路蛮妙，遂写一篇题解。
-题目在这里  
-思路因为每一次的音量调节我们 必须选择 升调或降调，所以我们可以设计状态 $dp[i][j]$ 表示在第 $i$ 次调音时，能否达到 $j$ 的音量" />
+  <meta name="description" content="P1877 [HAOI2012] 音量调节（到达性 DP）" />
   
 
   
@@ -17,15 +15,15 @@
   
   <title>P1877 [HAOI2012] 音量调节（到达性 DP） | Uaena&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="P1877 [HAOI2012] 音量调节（到达性 DP）前言清晨起来打水题，竟然普及-被卡住。细细思索，此题思路蛮妙，遂写一篇题解。 题目在这里   思路因为每一次的音量调节我们 必须选择 升调或降调，所以我们可以设计状态 $dp[i][j]$ 表示在第 $i$ 次调音时，能否达到 $j$ 的音量。   $dp[i][j]&#x3D;1$表示可以达到，$dp[i][j]&#x3D;0$表示不可以达到。  如果$\s">
+  <meta name="description" content="P1877 [HAOI2012] 音量调节（到达性 DP）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="P1877 [HAOI2012] 音量调节（到达性 DP）">
 <meta property="og:url" content="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/index.html">
 <meta property="og:site_name" content="Uaena&#39;s Blog">
-<meta property="og:description" content="P1877 [HAOI2012] 音量调节（到达性 DP）前言清晨起来打水题，竟然普及-被卡住。细细思索，此题思路蛮妙，遂写一篇题解。 题目在这里   思路因为每一次的音量调节我们 必须选择 升调或降调，所以我们可以设计状态 $dp[i][j]$ 表示在第 $i$ 次调音时，能否达到 $j$ 的音量。   $dp[i][j]&#x3D;1$表示可以达到，$dp[i][j]&#x3D;0$表示不可以达到。  如果$\s">
+<meta property="og:description" content="P1877 [HAOI2012] 音量调节（到达性 DP）">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-05-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-05-10T01:01:41.687Z">
+<meta property="article:modified_time" content="2025-05-10T11:57:33.661Z">
 <meta property="article:author" content="Wensheng Teng">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -86,13 +84,14 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmahisz5g00041oer9zolex66" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmai67wyi000028er7hk0fl2o" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="P1877-HAOI2012-音量调节（到达性-DP）"><a href="#P1877-HAOI2012-音量调节（到达性-DP）" class="headerlink" title="P1877 [HAOI2012] 音量调节（到达性 DP）"></a>P1877 [HAOI2012] 音量调节（到达性 DP）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>清晨起来打水题，竟然普及-被卡住。细细思索，此题思路蛮妙，遂写一篇题解。</p>
+        <h1 id="P1877-HAOI2012-音量调节（到达性-DP）"><a href="#P1877-HAOI2012-音量调节（到达性-DP）" class="headerlink" title="P1877 [HAOI2012] 音量调节（到达性 DP）"></a>P1877 [HAOI2012] 音量调节（到达性 DP）</h1><span id="more"></span>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>清晨起来打水题，竟然普及-被卡住。细细思索，此题思路蛮妙，遂写一篇题解。</p>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1877">题目在这里</a>  </p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为每一次的音量调节我们 <strong>必须选择</strong> 升调或降调，所以我们可以设计状态 $dp[i][j]$ 表示在第 $i$ 次调音时，能否达到 $j$ 的音量。  </p>
 <p>$dp[i][j]=1$表示可以达到，$dp[i][j]=0$表示不可以达到。 </p>
