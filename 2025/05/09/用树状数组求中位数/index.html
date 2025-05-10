@@ -27,7 +27,7 @@ XCPC 所需要的最基本的 算法&amp;amp;数据结构 的知识面我们三�
 <meta property="og:description" content="用树状数组求中位数前言以下全是废话, 正篇请移步思路   在大一下终于是组好打 XCPC 的三人小队了, 另外两位是 yn 和 ydx 。   XCPC 所需要的最基本的 算法&amp;数据结构 的知识面我们三人都还未全面覆盖，     于是乎我们三人各自开始了 充满激情的 加训。   正是这样一个加训的清晨, 我看不到一个好的题解去教如何用树状数组求中位数   自己苦苦挣扎了约莫 2 小时终于写">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-05-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-05-09T02:31:01.559Z">
+<meta property="article:modified_time" content="2025-05-09T02:36:54.958Z">
 <meta property="article:author" content="Wensheng Teng">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -88,7 +88,7 @@ XCPC 所需要的最基本的 算法&amp;amp;数据结构 的知识面我们三�
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmag6jls50001xcer46cf4dwk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmahisnhv000288er7ueqasx7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -115,17 +115,17 @@ XCPC 所需要的最基本的 算法&amp;amp;数据结构 的知识面我们三�
 <p>我们用 $cnt[i]$ 表示 $i$ 是否在这个序列中出现过，1 表示出现了，0 表示没出现</p>
 <p>我们遍历序列 $A$，将 $cnt[A[i]]$ 打上标记 1</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnt:  1 0 1 0 1 1 0 1 1</span><br><span class="line">index:1 2 3 4 5 6 7 8 9</span><br></pre></td></tr></table></figure>
-<p>我们再用 $presum\_cnt$ 表示 $cnt$ 的前缀和</p>
+<p>我们再用 $presum_cnt$ 表示 $cnt$ 的前缀和</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">presum_cnt:1 1 2 2 3 4 4 5 6</span><br><span class="line">index:     1 2 3 4 5 6 7 8 9</span><br></pre></td></tr></table></figure>
-<p>这时候 $presum\_cnt[i]$ 的意义就是 <strong>小于等于 $i$ 的数在 A 中出现过的数量</strong>。  </p>
+<p>这时候 $presum_cnt[i]$ 的意义就是 <strong>小于等于 $i$ 的数在 A 中出现过的数量</strong>。  </p>
 <p>中位数的意义是什么？是第 $\lceil n/2 \rceil$ 个小的数。  </p>
-<p>我们只要找到 $presum\_cnt[i]==$ $\lceil n/2 \rceil$，此时的 $i$ 就是我们要寻找的中位数</p>
-<p>也就是样例中的 $presum\_cnt[6]$ $==$ $presum\_cnt[7]$ $==\lceil 7 \rceil==4$，$i=6,7$</p>
+<p>我们只要找到 $presum_cnt[i]==$ $\lceil n/2 \rceil$，此时的 $i$ 就是我们要寻找的中位数</p>
+<p>也就是样例中的 $presum_cnt[6]$ $==$ $presum_cnt[7]$ $==\lceil 7 \rceil==4$，$i=6,7$</p>
 <p><strong>怎的中位数还有两个？这对吗？</strong></p>
 <p>这不对，显然 7 根本不在原序列中。  </p>
-<p><strong>我们要从前往后找到第一个</strong> $presum\_cnt[i]==$ $\lceil n/2 \rceil$，此时的 $i$ 就是我们要寻找的中位数</p>
-<p><strong>怎么去找到这样的 $i$ 呢？$presum\_cnt$是一个 1 的前缀和，显然是升序的，我们用二分查找。</strong></p>
-<p>聪明的同学已经发现，$presum\_cnt$ 可以用树状数组去维护 $cnt$ 得到。    </p>
+<p><strong>我们要从前往后找到第一个</strong> $presum_cnt[i]==$ $\lceil n/2 \rceil$，此时的 $i$ 就是我们要寻找的中位数</p>
+<p><strong>怎么去找到这样的 $i$ 呢？$presum_cnt$是一个 1 的前缀和，显然是升序的，我们用二分查找。</strong></p>
+<p>聪明的同学已经发现，$presum_cnt$ 可以用树状数组去维护 $cnt$ 得到。    </p>
 <p>这样子我们每次向序列插入新元素的时候，就只用 $O(logn)$ 的时间！</p>
 <p>我们可以看到数据大小是有$1e9$的，所以我们还需要进行离散化处理。</p>
 <p>然后，就没有然后了，贴上AC代码。时间复杂度是$O(nlog^2n)$</p>
@@ -152,6 +152,8 @@ XCPC 所需要的最基本的 算法&amp;amp;数据结构 的知识面我们三�
     
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2025/05/10/P1877-%5BHAOI2012%5D-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" rel="prev"><span class="meta-nav">←</span> P1877 [HAOI2012] 音量调节（到达性 DP）</a></span>
     
     
         <span class="nav-next"><a href="/2025/03/22/Hello_World/" rel="next">Hello World! <span class="meta-nav">→</span></a></span>
@@ -185,6 +187,10 @@ XCPC 所需要的最基本的 算法&amp;amp;数据结构 的知识面我们三�
       <ul>
         
           <li>
+            <a href="/2025/05/10/P1877-%5BHAOI2012%5D-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/">P1877 [HAOI2012] 音量调节（到达性 DP）</a>
+          </li>
+        
+          <li>
             <a href="/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/">用树状数组求中位数</a>
           </li>
         
@@ -201,7 +207,7 @@ XCPC 所需要的最基本的 算法&amp;amp;数据结构 的知识面我们三�
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </aside>
 
