@@ -79,7 +79,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmai67wyi000028er7hk0fl2o" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmbxmyxzt00047ser1w1s5lmr" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -129,7 +129,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmai67wys000428er8xro8rmv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmbxmyxzo00007serdrh4ccai" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -165,11 +165,11 @@
 <p><strong>怎的中位数还有两个？这对吗？</strong></p>
 <p>这不对，显然 7 根本不在原序列中。  </p>
 <p><strong>我们要从前往后找到第一个</strong> $presum_cnt[i]==$ $\lceil n/2 \rceil$，此时的 $i$ 就是我们要寻找的中位数</p>
-<p><strong>怎么去找到这样的 $i$ 呢？$presum_cnt$是一个 1 的前缀和，显然是升序的，我们用二分查找。</strong></p>
+<p><strong>怎么去找到这样的 $i$ 呢？$presum_cnt$ 是一个 1 的前缀和，显然是升序的，我们用二分查找。</strong></p>
 <p>聪明的同学已经发现，$presum_cnt$ 可以用树状数组去维护 $cnt$ 得到。    </p>
 <p>这样子我们每次向序列插入新元素的时候，就只用 $O(logn)$ 的时间！</p>
-<p>我们可以看到数据大小是有$1e9$的，所以我们还需要进行离散化处理。</p>
-<p>然后，就没有然后了，贴上AC代码。时间复杂度是$O(nlog^2n)$</p>
+<p>我们可以看到数据大小是有 $1e9$ 的，所以我们还需要进行离散化处理。</p>
+<p>然后，就没有然后了，贴上 AC 代码。时间复杂度是 $O(nlog^2n)$</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">const int N = 1e5 + 7;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">int n, cnt = 0;</span><br><span class="line">ll a[N], temp[N], c[N];</span><br><span class="line">map&lt;ll, int&gt; m;</span><br><span class="line">int lowbit(int i) &#123;</span><br><span class="line">    return i &amp; (-i);</span><br><span class="line">&#125;</span><br><span class="line">void add(int i, int v) &#123;</span><br><span class="line">    while (i &lt;= n) &#123;</span><br><span class="line">        c[i] += v;</span><br><span class="line">        i += lowbit(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">int sum(int i) &#123;</span><br><span class="line">    int res = 0;</span><br><span class="line">    while (i &gt; 0) &#123;</span><br><span class="line">        res += c[i];</span><br><span class="line">        i -= lowbit(i);</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">    ios::sync_with_stdio(0);</span><br><span class="line">    cin.tie(0), cout.tie(0);</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) cin &gt;&gt; a[i], temp[i] = a[i];</span><br><span class="line">    sort(temp + 1, temp + 1 + n);</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) m[temp[i]] = ++cnt;</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">        add(m[a[i]], 1);</span><br><span class="line">        if (i == 1) &#123;</span><br><span class="line">            cout &lt;&lt; a[1] &lt;&lt; &quot;\n&quot;;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        if (i % 2 == 0) continue;</span><br><span class="line">        int l = 1, r = n, k = (i / 2) + 1;</span><br><span class="line">        while (l &lt;= r) &#123;</span><br><span class="line">            int mid = (l + r) &gt;&gt; 1;</span><br><span class="line">            if (sum(mid) &gt;= k) r = mid - 1;</span><br><span class="line">            if (sum(mid) &lt; k) l = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; temp[l] &lt;&lt; &quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="感谢阅读"><a href="#感谢阅读" class="headerlink" title="感谢阅读~"></a>感谢阅读~</h2>
       
@@ -210,7 +210,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/03/22/Hello_World/" data-id="cmai67wys000328er7gok1it7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/03/22/Hello_World/" data-id="cmbxmyxzt00037ser9n1t9hof" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
