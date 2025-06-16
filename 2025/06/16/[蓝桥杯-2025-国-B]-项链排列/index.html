@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="[蓝桥杯 2025 国 B] 项链排列题解" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>[蓝桥杯 2025 国 B] 项链排列 | Uaena&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[蓝桥杯 2025 国 B] 项链排列题解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[蓝桥杯 2025 国 B] 项链排列">
+<meta property="og:url" content="http://uaena-7.github.io/2025/06/16/[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E9%A1%B9%E9%93%BE%E6%8E%92%E5%88%97/index.html">
+<meta property="og:site_name" content="Uaena&#39;s Blog">
+<meta property="og:description" content="[蓝桥杯 2025 国 B] 项链排列题解">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-06-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-06-16T09:16:43.811Z">
+<meta property="article:author" content="Wensheng Teng">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="Uaena&#39;s Blog" rel="home">Uaena&#39;s Blog</a>
+      </h1>
+      
+        <h2 class="site-description hitokoto"></h2>
+        <script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js"></script>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-[蓝桥杯-2025-国-B]-项链排列" class="post-[蓝桥杯-2025-国-B]-项链排列 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      [蓝桥杯 2025 国 B] 项链排列
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/16/[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E9%A1%B9%E9%93%BE%E6%8E%92%E5%88%97/" data-id="cmbyvrs0900015wer7vkk7fj5" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="蓝桥杯-2025-国-B-项链排列题解"><a href="#蓝桥杯-2025-国-B-项链排列题解" class="headerlink" title="[蓝桥杯 2025 国 B] 项链排列题解"></a>[蓝桥杯 2025 国 B] 项链排列题解</h1><span id="more"></span>
+<h2 id="总体贪心思路"><a href="#总体贪心思路" class="headerlink" title="总体贪心思路"></a>总体贪心思路</h2><p>这道题就是一个巨大的贪心。</p>
+<p>读题我们需要构造一个变化次数为 $C$ 的最小字典序 $LQ$ 字符串。<strong>对变化次数的贡献一定是交替变换的 $LQLQLQ…$ 子段，我们定义其为贡献子段。</strong></p>
+<p>那么我们在构造时 <strong>是否有必要在交替变换的贡献子段中插入连续的 $LLLLL…$ 或者 $QQQQQ…$？</strong> 思考一下我们会发现必然是没必要的。<strong>可插入其中的连续 $L$ 段放在贡献子段之前使得整个字符串更小，而可插入其中的连续 $Q$ 段放在连续子段之后使得整个字符串更小。所以我们整体的贪心思路就是先构造贡献子段，再在前后插入剩余的 $L、Q$。</strong></p>
+<h2 id="贡献子段构造"><a href="#贡献子段构造" class="headerlink" title="贡献子段构造"></a>贡献子段构造</h2><p>我们将贡献子段分为两类：</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}{c}
+以 L 开头，LQLQLQ... \\
+以 Q 开头，QLQLQL...\\
+\end{array}
+\right.</script><p>我们定义两类贡献子段贡献的变化次数为 $C$ 时，需要 $L$ 和 $Q$ 的数量为：</p>
+<script type="math/tex; mode=display">
+Lneed_i，Qneed_i.(i = 1,2 表示第几类贡献子段)\\
+容易得\\
+Lneed_1 = C/2+1，Qneed_1 =(C+1)/2\\
+Lneed_2 =(C+1)/2，Qneed_2 = C/2+1</script><p>显然 <strong>第一类贡献子段更优，因为第二类贡献子段无法在前端添加多余的 $L$，否则会改变贡献子段的贡献量，所以选择第二类时整个字符串一定以 $Q$ 开头。而第一类可以在前端添加多余的 $L$，一定以 $L$ 开头。</strong> 那么是否贡献子段一定选择第一种呢？不是的，<strong>因为两类贡献子段的 $Lneed_i$ 和 $Qneed_i$ 并不同，</strong> 并且：</p>
+<script type="math/tex; mode=display">
+Lneed_1\ge Lneed_2，Qneed_1 \le Qneed_2</script><p>也就是说 <strong>构造第一类贡献子段需要更多的 $L$，构造第二类贡献子段需要更多的 $Q$。但是第一类更优，所以，我们应该尽可能的构造第一类。</strong></p>
+<p>那么只要 $A\ge Lneed_1 \&amp; B\ge Qneed_1$，我们就构造第一类贡献子段。否则，如果 $A\ge Lneed_2 \&amp; B\ge Qneed_2$ 我们就构造第二类贡献子段。否则，就是无法构造，直接输出 $-1$。</p>
+<h2 id="多余的-L-和-Q"><a href="#多余的-L-和-Q" class="headerlink" title="多余的 $L$ 和 $Q$"></a>多余的 $L$ 和 $Q$</h2><p>贡献子段构造完毕后考虑多余的 $L$ 和 $Q$ 的插入。前文已经讨论过插入贡献子段中间的情况是没必要的，那么我们就考虑怎么插入前端或者后端。</p>
+<h3 id="当我们选择第一类贡献子段时"><a href="#当我们选择第一类贡献子段时" class="headerlink" title="当我们选择第一类贡献子段时"></a>当我们选择第一类贡献子段时</h3><p>多余的 $L$ 插入后端的话使得整个字符串的第二位为 $Q$，插入前端的话使得贡献子段中的 $Q$ 往后移。显然有多余的 $L$ 就往前插最优。</p>
+<p>自然地多余的 $Q$ 会往最后插入，但是贡献子段有可能是以 $L$ 结尾的，此时我们将把多余的 $Q$ 插入贡献子段的最后一个 $Q$ 后面。</p>
+<h3 id="当我们选择第二类贡献子段时"><a href="#当我们选择第二类贡献子段时" class="headerlink" title="当我们选择第二类贡献子段时"></a>当我们选择第二类贡献子段时</h3><p>我们思考一下，会发现 <strong>当我们选择了第二类贡献子段时一定不会有多余的 $L$，如果有，一定能选择第一类贡献子段。</strong></p>
+<p>举个例子：</p>
+<script type="math/tex; mode=display">
+假设我们的贡献子段为\ QLQ ，那么如果有多余的 L 就可以重新构造为\ LQL \\</script><p>那么如何插入多余的 $Q$ 呢？直接插入最后端即可。<strong>但是贡献子段有没有可能是以 $L$ 结尾的呢？不可能，因为如果以 $L$ 结尾一定能重新构造成第一类贡献子段。</strong></p>
+<p>举个例子：</p>
+<script type="math/tex; mode=display">
+假设我们的贡献子段为\ QLQL，那么重新排列就是\ LQLQ</script><p>那么插入完成后我们的构造也就结束，但是不要忘记特殊判断 $C=0$ 的情况！</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">const int N = 1e5 + 7;</span><br><span class="line">int a, b, c;</span><br><span class="line">int main() &#123;</span><br><span class="line">    ios::sync_with_stdio(0);</span><br><span class="line">    cin.tie(0), cout.tie(0);</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">    if (!c) &#123;</span><br><span class="line">        if (a != 0 &amp;&amp; b != 0) &#123;</span><br><span class="line">            cout &lt;&lt; &quot;-1&quot;;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            for (int i = 1; i &lt;= a; i++) cout &lt;&lt; &quot;L&quot;;</span><br><span class="line">            for (int i = 1; i &lt;= b; i++) cout &lt;&lt; &quot;Q&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    int Lneed = c / 2 + 1;</span><br><span class="line">    int Qneed = (c + 1) / 2;</span><br><span class="line">    if (a &gt;= Lneed &amp;&amp; b &gt;= Qneed) &#123;</span><br><span class="line">        for (int i = 1; i &lt;= a - Lneed; i++) cout &lt;&lt; &quot;L&quot;;</span><br><span class="line">        for (int i = 1; i &lt;= Lneed + Qneed - 1; i++) &#123;</span><br><span class="line">            if (i &amp; 1)</span><br><span class="line">                cout &lt;&lt; &quot;L&quot;;</span><br><span class="line">            else</span><br><span class="line">                cout &lt;&lt; &quot;Q&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        if ((Lneed + Qneed) &amp; 1) &#123;</span><br><span class="line">            for (int i = 1; i &lt;= b - Qneed; i++) cout &lt;&lt; &quot;Q&quot;;</span><br><span class="line">            cout &lt;&lt; &quot;L&quot;;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            cout &lt;&lt; &quot;Q&quot;;</span><br><span class="line">            for (int i = 1; i &lt;= b - Qneed; i++) cout &lt;&lt; &quot;Q&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        swap(Lneed, Qneed);</span><br><span class="line">        if (a &lt; Lneed || b &lt; Qneed) &#123;</span><br><span class="line">            cout &lt;&lt; &quot;-1&quot;;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt;= Qneed + Lneed; i++) &#123;</span><br><span class="line">            if (i &amp; 1)</span><br><span class="line">                cout &lt;&lt; &quot;Q&quot;;</span><br><span class="line">            else</span><br><span class="line">                cout &lt;&lt; &quot;L&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt;= b - Qneed; i++) cout &lt;&lt; &quot;Q&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="感谢观看"><a href="#感谢观看" class="headerlink" title="感谢观看~"></a>感谢观看~</h2>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2025/06/16/%5B%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B%5D-%E9%A1%B9%E9%93%BE%E6%8E%92%E5%88%97/">
+    <time datetime="2025-06-15T16:00:00.000Z" class="entry-date">
+        2025-06-16
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2025/06/15/2025615-%5B%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B%5D-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="next">[蓝桥杯 2025 国 B] 斐波那契字符串 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2025/06/16/%5B%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B%5D-%E9%A1%B9%E9%93%BE%E6%8E%92%E5%88%97/">[蓝桥杯 2025 国 B] 项链排列</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/15/2025615-%5B%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B%5D-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%97%E7%AC%A6%E4%B8%B2/">[蓝桥杯 2025 国 B] 斐波那契字符串</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/10/P1877-%5BHAOI2012%5D-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/">P1877 [HAOI2012] 音量调节（到达性 DP）</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/">用树状数组求中位数</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/22/Hello_World/">Hello World!</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">题解</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2025 Wensheng Teng
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
