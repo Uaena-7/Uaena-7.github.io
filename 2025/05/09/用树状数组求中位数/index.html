@@ -4,11 +4,7 @@
   <meta charset="utf-8">
   
   
-  <meta name="description" content="用树状数组求中位数前言以下全是废话, 正篇请移步思路  
-在大一下终于是组好打 XCPC 的三人小队了, 另外两位是 yn 和 ydx 。  
-XCPC 所需要的最基本的 算法&amp;amp;数据结构 的知识面我们三人都还未全面覆盖，    
-于是乎我们三人各自开始了 充满激情的 加训。  
-正是这样一个" />
+  <meta name="description" content="用树状数组求中位数" />
   
 
   
@@ -19,15 +15,15 @@ XCPC 所需要的最基本的 算法&amp;amp;数据结构 的知识面我们三�
   
   <title>用树状数组求中位数 | Uaena&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="用树状数组求中位数前言以下全是废话, 正篇请移步思路   在大一下终于是组好打 XCPC 的三人小队了, 另外两位是 yn 和 ydx 。   XCPC 所需要的最基本的 算法&amp;数据结构 的知识面我们三人都还未全面覆盖，     于是乎我们三人各自开始了 充满激情的 加训。   正是这样一个加训的清晨, 我看不到一个好的题解去教如何用树状数组求中位数   自己苦苦挣扎了约莫 2 小时终于写">
+  <meta name="description" content="用树状数组求中位数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用树状数组求中位数">
 <meta property="og:url" content="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/index.html">
 <meta property="og:site_name" content="Uaena&#39;s Blog">
-<meta property="og:description" content="用树状数组求中位数前言以下全是废话, 正篇请移步思路   在大一下终于是组好打 XCPC 的三人小队了, 另外两位是 yn 和 ydx 。   XCPC 所需要的最基本的 算法&amp;数据结构 的知识面我们三人都还未全面覆盖，     于是乎我们三人各自开始了 充满激情的 加训。   正是这样一个加训的清晨, 我看不到一个好的题解去教如何用树状数组求中位数   自己苦苦挣扎了约莫 2 小时终于写">
+<meta property="og:description" content="用树状数组求中位数">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-05-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-06-15T08:01:37.918Z">
+<meta property="article:modified_time" content="2025-06-16T08:11:21.348Z">
 <meta property="article:author" content="Wensheng Teng">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -88,13 +84,14 @@ XCPC 所需要的最基本的 算法&amp;amp;数据结构 的知识面我们三�
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmbysutey0007egerdz737pvc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmbytftc70004gker8vgz5yo1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="用树状数组求中位数"><a href="#用树状数组求中位数" class="headerlink" title="用树状数组求中位数"></a>用树状数组求中位数</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下全是废话, 正篇请移步思路  </p>
+        <h1 id="用树状数组求中位数"><a href="#用树状数组求中位数" class="headerlink" title="用树状数组求中位数"></a>用树状数组求中位数</h1><span id="more"></span>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下全是废话, 正篇请移步思路  </p>
 <p>在大一下终于是组好打 XCPC 的三人小队了, 另外两位是 yn 和 ydx 。  </p>
 <p>XCPC 所需要的最基本的 算法&amp;数据结构 的知识面我们三人都还未全面覆盖，    </p>
 <p>于是乎我们三人各自开始了 <del>充满激情的</del> 加训。  </p>

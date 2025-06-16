@@ -79,33 +79,18 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/15/2025615-[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="cmbysuter0000eger0i684v59" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/15/2025615-[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="cmbytftc40001gkerc4ryhcgc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="蓝桥杯-2025-国-B-斐波那契字符串"><a href="#蓝桥杯-2025-国-B-斐波那契字符串" class="headerlink" title="[蓝桥杯 2025 国 B] 斐波那契字符串"></a>[蓝桥杯 2025 国 B] 斐波那契字符串</h1><h2 id="考场（废话）"><a href="#考场（废话）" class="headerlink" title="考场（废话）"></a>考场（废话）</h2><p>写到 D 已经过去一个小时，迅速写了一个暴力，直接把 $S_n$ 求出来数逆序数。然后这里点名表扬一波长沙理工电脑，$n=100$ 测一波电脑直接卡死，被迫换机子。换好机子后冷静打表找到规律。</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>读题我们知道字符串 $S$ 由 01 构成，又</p>
-<script type="math/tex; mode=display">
-S_1 = 0, S_2 = 1 \\
-S_n = S_{n-2}+S_{n-1}</script><p>, 然后求逆序对个数。我们可以把具体的每个 $S_N$ 求出来，但是数据范围在 $3\le N\le10^5$，显然长度会爆掉。</p>
-<p><strong>所以我们不求其具体字符串，而是考虑其逆序对数量的继承。我们定义 $dp[i]$ 为 $S_i$ 中的逆序对个数，$Zero[i]$ 为 $S_i$ 中 0 的个数，$One[i]$ 为 $S_i$ 中 $1$ 的个数。</strong></p>
-<p><strong>$dp[i]$ 也就是 $S_i$ 中每个 $0$ 能构成的逆序对个数之和。</strong></p>
-<p><strong>$S_i$ 中各个 0 能构成的逆序对个数取决于在这个 0 之前 1 的个数。</strong></p>
-<p>那么每次做字符串拼接的时候，我们发现 <strong>在 $S_n$ 中 $S_{n-2}$ 中 0 的逆序对数量并不改变，而 $S_{n-1}$ 中每个 0 的逆序对数量增加 $S_{n-2}$ 中 1 的数量个</strong></p>
-<p>例如题中例：</p>
-<script type="math/tex; mode=display">
-S_3 = 01, S_4 = 101,\\
-S_5 = S_3+S_4 = 01101\\</script><p>$S_5$ 中 $S_3$ 的那个 $0$ 的逆序数并没有增加，而 $S_5$ 中的 $S_4$ 的那个 $0$ 逆序数增加了 $One[3]=1$。</p>
-<p><strong>我们也发现，在拼接后 $S_3、S_4$ 内部的逆序数没有改变，那么状态转移方程就呼之欲出也。</strong></p>
-<script type="math/tex; mode=display">
-dp [i] = dp [i-1]+dp [i-2]+Zero [i-1]*One [i-2]</script><p>$Zero[i]$ 和 $One[i]$ 的维护非常好想，就是继承前两者之和。</p>
-<script type="math/tex; mode=display">
-Zero [i] = Zero [i-1]+Zero [i-2]\\
-One [i] = One [i-1]+One [i-2]</script><p>别忘记取模！</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span> + <span class="number">7</span>;</span><br><span class="line"><span class="type">const</span> ll Mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="type">int</span> t, n;</span><br><span class="line">ll dp [N], Zero [N], One [N];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios:: <span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    Zero [<span class="number">1</span>] = <span class="number">1</span>, Zero [<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">    One [<span class="number">1</span>] = <span class="number">0</span>, One [<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">    dp [<span class="number">1</span>] = <span class="number">0</span>, dp [<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">3</span>; i &lt;= N - <span class="number">7</span>; i++) &#123;</span><br><span class="line">        Zero [i] = (Zero [i - <span class="number">1</span>] + Zero [i - <span class="number">2</span>]) % Mod;</span><br><span class="line">        One [i] = (One [i - <span class="number">1</span>] + One [i - <span class="number">2</span>]) % Mod;</span><br><span class="line">        dp [i] = (dp [i - <span class="number">1</span>] + dp [i - <span class="number">2</span>] + Zero [i - <span class="number">1</span>] * One [i - <span class="number">2</span>]) % Mod;</span><br><span class="line">    &#125;</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span> (t--) &#123;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        cout &lt;&lt; dp [n] &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="谢谢观看"><a href="#谢谢观看" class="headerlink" title="谢谢观看~"></a>谢谢观看~</h2>
+        <h1 id="蓝桥杯-2025-国-B-斐波那契字符串"><a href="#蓝桥杯-2025-国-B-斐波那契字符串" class="headerlink" title="[蓝桥杯 2025 国 B] 斐波那契字符串"></a>[蓝桥杯 2025 国 B] 斐波那契字符串</h1>
+        
+          <p class="article-more-link">
+            <a href="/2025/06/15/2025615-%5B%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B%5D-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%97%E7%AC%A6%E4%B8%B2/#more" class="more-link">More <span class="meta-nav">→</span></a>
+          </p>
+        
       
     </div><!-- .entry-content -->
 
@@ -144,7 +129,7 @@ One [i] = One [i-1]+One [i-2]</script><p>别忘记取模！</p>
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmbysutet0001eger8yyj4s85" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmbytftc80005gkerdq284xhr" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -194,49 +179,18 @@ One [i] = One [i-1]+One [i-2]</script><p>别忘记取模！</p>
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmbysutey0007egerdz737pvc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmbytftc70004gker8vgz5yo1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="用树状数组求中位数"><a href="#用树状数组求中位数" class="headerlink" title="用树状数组求中位数"></a>用树状数组求中位数</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下全是废话, 正篇请移步思路  </p>
-<p>在大一下终于是组好打 XCPC 的三人小队了, 另外两位是 yn 和 ydx 。  </p>
-<p>XCPC 所需要的最基本的 算法&amp;数据结构 的知识面我们三人都还未全面覆盖，    </p>
-<p>于是乎我们三人各自开始了 <del>充满激情的</del> 加训。  </p>
-<p>正是这样一个加训的清晨, 我看不到一个好的题解去教如何用树状数组求中位数  </p>
-<p>自己苦苦挣扎了约莫 2 小时终于写出来了。  </p>
-<p>于是乎诞生了这一篇 <del>细致全面、通俗易懂、拯救蒟蒻的</del> 题解。</p>
-<h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><p>树状数组、二分、离散化</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1168">题目在这里</a></p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p><strong>我们如何求一个整数序列的中位数？</strong>  </p>
-<p>排序后取 $A[$ $\lceil n/2 \rceil$ $]$ 即可，时间复杂度 $O(nlogn)$  </p>
-<p><strong>但是我们要多次加入元素多次求新序列的中位数呢？</strong>  </p>
-<p>此时多次排序复杂度达到 $O(n^2log n)$，显然是超时了  </p>
-<p>这时候，我们可以考虑用树状数组  </p>
-<p>但我们仍先考虑 <strong>怎么用树状数组求一个静态序列的中位数</strong></p>
-<p>以我的样例做解释  </p>
-<p><strong>输入</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">6</span><br><span class="line">3 1 5 9 8 6</span><br></pre></td></tr></table></figure>
-<p>我们用 $cnt[i]$ 表示 $i$ 是否在这个序列中出现过，1 表示出现了，0 表示没出现</p>
-<p>我们遍历序列 $A$，将 $cnt[A[i]]$ 打上标记 1</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnt:  1 0 1 0 1 1 0 1 1</span><br><span class="line">index:1 2 3 4 5 6 7 8 9</span><br></pre></td></tr></table></figure>
-<p>我们再用 $presum_cnt$ 表示 $cnt$ 的前缀和</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">presum_cnt:1 1 2 2 3 4 4 5 6</span><br><span class="line">index:     1 2 3 4 5 6 7 8 9</span><br></pre></td></tr></table></figure>
-<p>这时候 $presum_cnt[i]$ 的意义就是 <strong>小于等于 $i$ 的数在 A 中出现过的数量</strong>。  </p>
-<p>中位数的意义是什么？是第 $\lceil n/2 \rceil$ 个小的数。  </p>
-<p>我们只要找到 $presum_cnt[i]==$ $\lceil n/2 \rceil$，此时的 $i$ 就是我们要寻找的中位数</p>
-<p>也就是样例中的 $presum_cnt[6]$ $==$ $presum_cnt[7]$ $==\lceil 7 \rceil==4$，$i=6,7$</p>
-<p><strong>怎的中位数还有两个？这对吗？</strong></p>
-<p>这不对，显然 7 根本不在原序列中。  </p>
-<p><strong>我们要从前往后找到第一个</strong> $presum_cnt[i]==$ $\lceil n/2 \rceil$，此时的 $i$ 就是我们要寻找的中位数</p>
-<p><strong>怎么去找到这样的 $i$ 呢？$presum_cnt$ 是一个 1 的前缀和，显然是升序的，我们用二分查找。</strong></p>
-<p>聪明的同学已经发现，$presum_cnt$ 可以用树状数组去维护 $cnt$ 得到。    </p>
-<p>这样子我们每次向序列插入新元素的时候，就只用 $O(logn)$ 的时间！</p>
-<p>我们可以看到数据大小是有 $1e9$ 的，所以我们还需要进行离散化处理。</p>
-<p>然后，就没有然后了，贴上 AC 代码。时间复杂度是 $O(nlog^2n)$</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">const int N = 1e5 + 7;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">int n, cnt = 0;</span><br><span class="line">ll a[N], temp[N], c[N];</span><br><span class="line">map&lt;ll, int&gt; m;</span><br><span class="line">int lowbit(int i) &#123;</span><br><span class="line">    return i &amp; (-i);</span><br><span class="line">&#125;</span><br><span class="line">void add(int i, int v) &#123;</span><br><span class="line">    while (i &lt;= n) &#123;</span><br><span class="line">        c[i] += v;</span><br><span class="line">        i += lowbit(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">int sum(int i) &#123;</span><br><span class="line">    int res = 0;</span><br><span class="line">    while (i &gt; 0) &#123;</span><br><span class="line">        res += c[i];</span><br><span class="line">        i -= lowbit(i);</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">    ios::sync_with_stdio(0);</span><br><span class="line">    cin.tie(0), cout.tie(0);</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) cin &gt;&gt; a[i], temp[i] = a[i];</span><br><span class="line">    sort(temp + 1, temp + 1 + n);</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) m[temp[i]] = ++cnt;</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">        add(m[a[i]], 1);</span><br><span class="line">        if (i == 1) &#123;</span><br><span class="line">            cout &lt;&lt; a[1] &lt;&lt; &quot;\n&quot;;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        if (i % 2 == 0) continue;</span><br><span class="line">        int l = 1, r = n, k = (i / 2) + 1;</span><br><span class="line">        while (l &lt;= r) &#123;</span><br><span class="line">            int mid = (l + r) &gt;&gt; 1;</span><br><span class="line">            if (sum(mid) &gt;= k) r = mid - 1;</span><br><span class="line">            if (sum(mid) &lt; k) l = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; temp[l] &lt;&lt; &quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="感谢阅读"><a href="#感谢阅读" class="headerlink" title="感谢阅读~"></a>感谢阅读~</h2>
+        <h1 id="用树状数组求中位数"><a href="#用树状数组求中位数" class="headerlink" title="用树状数组求中位数"></a>用树状数组求中位数</h1>
+        
+          <p class="article-more-link">
+            <a href="/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/#more" class="more-link">More <span class="meta-nav">→</span></a>
+          </p>
+        
       
     </div><!-- .entry-content -->
 
@@ -275,7 +229,7 @@ One [i] = One [i-1]+One [i-2]</script><p>别忘记取模！</p>
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/03/22/Hello_World/" data-id="cmbysutey0006egerg0c0f26n" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/03/22/Hello_World/" data-id="cmbytftc20000gker6cdtexz1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
