@@ -23,7 +23,7 @@
 <meta property="og:description" content="[蓝桥杯 2025 国 B] 斐波那契字符串">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-06-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-06-16T19:45:19.472Z">
+<meta property="article:modified_time" content="2025-06-20T15:22:32.827Z">
 <meta property="article:author" content="Wensheng Teng">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
@@ -84,7 +84,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/15/2025615-[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="cmbzi7t6f0000f4er3pbjhcuq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/15/2025615-[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="cmc6bqw8j0000vser90k0b0os" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -99,7 +99,7 @@ S_n = S_{n-2}+S_{n-1}</script><p>, 然后求逆序对个数。我们可以把具
 <p>所以我们不求其具体字符串，而是<strong>考虑其逆序对数量的继承</strong>。我们定义 $dp[i]$ 为 $S_i$ 中的逆序对个数，$Zero[i]$ 为 $S_i$ 中 0 的个数，$One[i]$ 为 $S_i$ 中 $1$ 的个数。</p>
 <p>$dp[i]$ 也就是 $S_i$ 中每个 $0$ 能构成的逆序对个数之和。</p>
 <p>$S_i$ 中各个 0 能构成的逆序对个数取决于在这个 0 之前 1 的个数。</p>
-<p>那么每次做字符串拼接的时候，我们发现 <strong>在 $S_n$ 中 $S_{n-2}$ 中 0 的逆序对数量并不改变，而 $S_{n-1}$ 中每个 0 的逆序对数量增加 $S_{n-2}$ 中 1 的数量个</strong></p>
+<p>那么每次做字符串拼接的时候，我们发现 <strong>在 $S_n$ 中 $S_{n-2}$ 中 0 的逆序对数量并不改变，而 $S_{n-1}$ 中每个 0 的逆序对数量增加 $S_{n-2}$ 中 1 的数量个。</strong></p>
 <p>例如题中例：</p>
 <script type="math/tex; mode=display">
 S_3 = 01, S_4 = 101,\\
@@ -239,5 +239,21 @@ One [i] = One [i-1]+One [i-2]</script><p>别忘记取模！</p>
 <div id="bg"></div>
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
