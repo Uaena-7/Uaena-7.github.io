@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   
-  <meta name="description" content="2025CCPC网络赛题解兼游记前言异世相遇队的第一次CCPC网络赛以两发罚时的差距宣告出线失败。刚开始其实并不抱着能过线的心情去打这场网络赛的，因为知道自己的水平其实并不够，大一的训练也并不充分。但谁能想到，心慌意乱地以三罚时过完两道签到题之后，我居然就用暴搜AC了终榜83/310的H题。隐隐约约" />
+  <meta name="description" content="2025CCPC网络赛题解兼游记" />
   
 
   
@@ -13,20 +13,21 @@
   
   
   
-  <title>Uaena&#39;s Blog</title>
+  <title>2025CCPC网络赛题解兼游记 | Uaena&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2025CCPC网络赛题解兼游记前言异世相遇队的第一次CCPC网络赛以两发罚时的差距宣告出线失败。刚开始其实并不抱着能过线的心情去打这场网络赛的，因为知道自己的水平其实并不够，大一的训练也并不充分。但谁能想到，心慌意乱地以三罚时过完两道签到题之后，我居然就用暴搜AC了终榜83&#x2F;310的H题。隐隐约约感觉到这次网络赛也许真的有戏，我们三人跟榜锁定A和G两题。此时距离比赛结束还有3个小时。期间三人在A">
+  <meta name="description" content="2025CCPC网络赛题解兼游记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Uaena&#39;s Blog">
+<meta property="og:title" content="2025CCPC网络赛题解兼游记">
 <meta property="og:url" content="http://uaena-7.github.io/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Uaena&#39;s Blog">
-<meta property="og:description" content="2025CCPC网络赛题解兼游记前言异世相遇队的第一次CCPC网络赛以两发罚时的差距宣告出线失败。刚开始其实并不抱着能过线的心情去打这场网络赛的，因为知道自己的水平其实并不够，大一的训练也并不充分。但谁能想到，心慌意乱地以三罚时过完两道签到题之后，我居然就用暴搜AC了终榜83&#x2F;310的H题。隐隐约约感觉到这次网络赛也许真的有戏，我们三人跟榜锁定A和G两题。此时距离比赛结束还有3个小时。期间三人在A">
+<meta property="og:description" content="2025CCPC网络赛题解兼游记">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="c:\Users\10073\Desktop\2025CCPCrank.png">
 <meta property="og:image" content="c:\Users\10073\Desktop\G%E9%A2%98%E9%9D%A2.png">
-<meta property="article:published_time" content="2025-09-23T18:46:13.353Z">
-<meta property="article:modified_time" content="2025-09-23T18:46:15.705Z">
+<meta property="article:published_time" content="2025-09-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-23T18:50:29.841Z">
 <meta property="article:author" content="Wensheng Teng">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="c:\Users\10073\Desktop\2025CCPCrank.png">
   
@@ -76,15 +77,24 @@
 
       <header class="entry-header">
         
+        
+  
+    <h1 class="entry-title article-title">
+      2025CCPC网络赛题解兼游记
+    </h1>
+  
+
+        
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/" data-id="cmfwwrgfz0001twer6d4h3c0y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/" data-id="cmfwwuuzx00059wercgcv1ov9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="2025CCPC网络赛题解兼游记"><a href="#2025CCPC网络赛题解兼游记" class="headerlink" title="2025CCPC网络赛题解兼游记"></a>2025CCPC网络赛题解兼游记</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>异世相遇队的第一次CCPC网络赛以两发罚时的差距宣告出线失败。刚开始其实并不抱着能过线的心情去打这场网络赛的，因为知道自己的水平其实并不够，大一的训练也并不充分。但谁能想到，心慌意乱地以三罚时过完两道签到题之后，我居然就用暴搜AC了终榜83/310的H题。隐隐约约感觉到这次网络赛也许真的有戏，我们三人跟榜锁定A和G两题。此时距离比赛结束还有3个小时。期间三人在A和G之间来回思考，yn和ydx在G题想到了类似的二分下标和记忆化做法，两人轮流上机写G，但是都没调出来。直到最后半小时，我始终想不出A题的正解，只有一个$O(max(n,m)nm)$的贪心思路。抱着试一试的心态交了一发，奇迹般地，AC了！最终以4题3罚时结束了比赛。如果两道签到题没有罚时，如果能不跟榜放弃G题去做别的可做题，也许这次我们就能将湖南工商大学的名字第一次搬上CCPC的区域赛榜单上。可惜，但可不能放弃。遂来补题写一写题解。</p>
+        <h1 id="2025CCPC网络赛题解兼游记"><a href="#2025CCPC网络赛题解兼游记" class="headerlink" title="2025CCPC网络赛题解兼游记"></a>2025CCPC网络赛题解兼游记</h1><span id="more"></span>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>异世相遇队的第一次CCPC网络赛以两发罚时的差距宣告出线失败。刚开始其实并不抱着能过线的心情去打这场网络赛的，因为知道自己的水平其实并不够，大一的训练也并不充分。但谁能想到，心慌意乱地以三罚时过完两道签到题之后，我居然就用暴搜AC了终榜83/310的H题。隐隐约约感觉到这次网络赛也许真的有戏，我们三人跟榜锁定A和G两题。此时距离比赛结束还有3个小时。期间三人在A和G之间来回思考，yn和ydx在G题想到了类似的二分下标和记忆化做法，两人轮流上机写G，但是都没调出来。直到最后半小时，我始终想不出A题的正解，只有一个$O(max(n,m)nm)$的贪心思路。抱着试一试的心态交了一发，奇迹般地，AC了！最终以4题3罚时结束了比赛。如果两道签到题没有罚时，如果能不跟榜放弃G题去做别的可做题，也许这次我们就能将湖南工商大学的名字第一次搬上CCPC的区域赛榜单上。可惜，但可不能放弃。遂来补题写一写题解。</p>
 <p><img src="C:\Users\10073\Desktop\2025CCPCrank.png" alt=""></p>
 <p>榜下就是两个湖南大学，下面还有不少92还是蛮开心的哈(#\^.\^#)</p>
 <h2 id="G题（根号分治与记忆化与二分）"><a href="#G题（根号分治与记忆化与二分）" class="headerlink" title="G题（根号分治与记忆化与二分）"></a>G题（根号分治与记忆化与二分）</h2><p><img src="C:\Users\10073\Desktop\G题面.png" alt=""></p>
@@ -92,18 +102,23 @@
 <p>对于非重数的询问，我们只需要在$pos[y]$中找到每一个大于$pos[x][i]$的数。因为是非重数，所以最多查找$\sqrt n$次，每一次在$pos[y]$中查找，其长度最多为$n$，用二分则是$O(log_n)$，综合则是$O(\sqrt n log_n)$。如果全是非重数，对于$q=n$次询问，整体时间复杂度是$O(n\sqrt n log_n)$，可过。</p>
 <p>对于重数的询问，我们可以提前记忆化答案。我们找出每一个重数$x$对于每一个数的答案记为$ans[x][y]$。例如样例中5是重数，我们记录$ans[5][1],ans[5][2],ans[5][3],ans[5][4]…$这样的答案记录非常简单，只需要从右到左，记录当前重数$x$出现的次数$cnt_multi$，遇到重数本身就$cnt_multi++$，遇到非重数$a[i]$就意味着$a[i]$左边的$x$都可以与当前非重数组成答案。于是$ans[x][a[i]]+=cnt[x]-cnt_multi+1$。对于一个重数的答案记录时间复杂度是$O(n)$，因为其出现的次数大于等于$\sqrt n$，所以重数的数量不会大于$\sqrt n$，故所有重数的答案记忆化时间复杂度$O(n\sqrt n)$。每次询问都是$O(1)$。</p>
 <p>总体时间复杂度$O(n\sqrt n log_n)$，对于$n_{max}=10^5$，可过。</p>
+<p>贴上代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">const int N = 1e5 + 7;</span><br><span class="line">const int Block_Len = 500;</span><br><span class="line">int n, q, block_len;</span><br><span class="line">int a[N];</span><br><span class="line">map&lt;ll, map&lt;int, ll&gt;&gt; ans;</span><br><span class="line">map&lt;ll, ll&gt; cnt, multi;</span><br><span class="line">map&lt;ll, vector&lt;int&gt;&gt; pos;</span><br><span class="line">void multi_prefix() &#123;</span><br><span class="line">    for (auto it = multi.begin(); it != multi.end(); it++) &#123;</span><br><span class="line">        ll cnt_mul = 0;</span><br><span class="line">        for (int i = n; i &gt;= 1; i--) &#123;</span><br><span class="line">            if (a[i] == it-&gt;first)</span><br><span class="line">                cnt_mul++;</span><br><span class="line">            else &#123;</span><br><span class="line">                ans[it-&gt;first][a[i]] += cnt[it-&gt;first] - cnt_mul;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">void binary_query(int x, int y) &#123;</span><br><span class="line">    int res = 0;</span><br><span class="line">    for (int i = 0; i &lt; (int)pos[x].size(); i++) &#123;</span><br><span class="line">        int l = 0, r = pos[y].size() - 1;</span><br><span class="line">        while (l &lt;= r) &#123;</span><br><span class="line">            int mid = (l + r) &gt;&gt; 1;</span><br><span class="line">            if (pos[y][mid] &gt;= pos[x][i]) r = mid - 1;</span><br><span class="line">            if (pos[y][mid] &lt; pos[x][i]) l = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        res += pos[y].size() - l;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; res &lt;&lt; &quot;\n&quot;;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">    ios::sync_with_stdio(0);</span><br><span class="line">    cin.tie(0), cout.tie(0);</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; q;</span><br><span class="line">    block_len = (int)sqrt(n);</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; a[i];</span><br><span class="line">        cnt[a[i]]++;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">        if (cnt[a[i]] &gt;= block_len) multi[a[i]] = 1;</span><br><span class="line">        pos[a[i]].push_back(i);</span><br><span class="line">    &#125;</span><br><span class="line">    multi_prefix();</span><br><span class="line">    int x, y;</span><br><span class="line">    for (int i = 1; i &lt;= q; i++) &#123;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">        if (x == y) &#123;</span><br><span class="line">            cout &lt;&lt; (cnt[x] - 1) * cnt[x] / 2 &lt;&lt; &quot;\n&quot;;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        if (multi.find(x) != multi.end()) &#123;</span><br><span class="line">            cout &lt;&lt; ans[x][y] &lt;&lt; &quot;\n&quot;;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            binary_query(x, y);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
     <a href="/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/">
-    <time datetime="2025-09-23T18:46:13.353Z" class="entry-date">
+    <time datetime="2025-09-23T16:00:00.000Z" class="entry-date">
         2025-09-24
     </time>
 </a>
     
     
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
     </footer>
 </article>
 
@@ -144,7 +159,7 @@
       <ul>
         
           <li>
-            <a href="/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/">(no title)</a>
+            <a href="/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/">2025CCPC网络赛题解兼游记</a>
           </li>
         
           <li>
@@ -172,7 +187,7 @@
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </aside>
 
@@ -215,21 +230,5 @@
 <div id="bg"></div>
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

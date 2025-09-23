@@ -69,34 +69,42 @@
 
       <header class="entry-header">
         
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/">2025CCPC网络赛题解兼游记</a>
+    </h1>
+  
+
+        
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/" data-id="cmfwwrgfz0001twer6d4h3c0y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/" data-id="cmfwwuuzx00059wercgcv1ov9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="2025CCPC网络赛题解兼游记"><a href="#2025CCPC网络赛题解兼游记" class="headerlink" title="2025CCPC网络赛题解兼游记"></a>2025CCPC网络赛题解兼游记</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>异世相遇队的第一次CCPC网络赛以两发罚时的差距宣告出线失败。刚开始其实并不抱着能过线的心情去打这场网络赛的，因为知道自己的水平其实并不够，大一的训练也并不充分。但谁能想到，心慌意乱地以三罚时过完两道签到题之后，我居然就用暴搜AC了终榜83/310的H题。隐隐约约感觉到这次网络赛也许真的有戏，我们三人跟榜锁定A和G两题。此时距离比赛结束还有3个小时。期间三人在A和G之间来回思考，yn和ydx在G题想到了类似的二分下标和记忆化做法，两人轮流上机写G，但是都没调出来。直到最后半小时，我始终想不出A题的正解，只有一个$O(max(n,m)nm)$的贪心思路。抱着试一试的心态交了一发，奇迹般地，AC了！最终以4题3罚时结束了比赛。如果两道签到题没有罚时，如果能不跟榜放弃G题去做别的可做题，也许这次我们就能将湖南工商大学的名字第一次搬上CCPC的区域赛榜单上。可惜，但可不能放弃。遂来补题写一写题解。</p>
-<p><img src="C:\Users\10073\Desktop\2025CCPCrank.png" alt=""></p>
-<p>榜下就是两个湖南大学，下面还有不少92还是蛮开心的哈(#\^.\^#)</p>
-<h2 id="G题（根号分治与记忆化与二分）"><a href="#G题（根号分治与记忆化与二分）" class="headerlink" title="G题（根号分治与记忆化与二分）"></a>G题（根号分治与记忆化与二分）</h2><p><img src="C:\Users\10073\Desktop\G题面.png" alt=""></p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>我们用$map$记录所有数字出现的次数$map<ll,int>cnt[i]$和其每次的出现下标$map<ll,vector<int>&gt;pos[i]$，将$cnt[i]\ge\sqrt n$的数记为重数，其他记为非重数。</p>
-<p>对于非重数的询问，我们只需要在$pos[y]$中找到每一个大于$pos[x][i]$的数。因为是非重数，所以最多查找$\sqrt n$次，每一次在$pos[y]$中查找，其长度最多为$n$，用二分则是$O(log_n)$，综合则是$O(\sqrt n log_n)$。如果全是非重数，对于$q=n$次询问，整体时间复杂度是$O(n\sqrt n log_n)$，可过。</p>
-<p>对于重数的询问，我们可以提前记忆化答案。我们找出每一个重数$x$对于每一个数的答案记为$ans[x][y]$。例如样例中5是重数，我们记录$ans[5][1],ans[5][2],ans[5][3],ans[5][4]…$这样的答案记录非常简单，只需要从右到左，记录当前重数$x$出现的次数$cnt_multi$，遇到重数本身就$cnt_multi++$，遇到非重数$a[i]$就意味着$a[i]$左边的$x$都可以与当前非重数组成答案。于是$ans[x][a[i]]+=cnt[x]-cnt_multi+1$。对于一个重数的答案记录时间复杂度是$O(n)$，因为其出现的次数大于等于$\sqrt n$，所以重数的数量不会大于$\sqrt n$，故所有重数的答案记忆化时间复杂度$O(n\sqrt n)$。每次询问都是$O(1)$。</p>
-<p>总体时间复杂度$O(n\sqrt n log_n)$，对于$n_{max}=10^5$，可过。</p>
-
+        <h1 id="2025CCPC网络赛题解兼游记"><a href="#2025CCPC网络赛题解兼游记" class="headerlink" title="2025CCPC网络赛题解兼游记"></a>2025CCPC网络赛题解兼游记</h1>
+        
+          <p class="article-more-link">
+            <a href="/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/#more" class="more-link">More <span class="meta-nav">→</span></a>
+          </p>
+        
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
     <a href="/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/">
-    <time datetime="2025-09-23T18:46:13.353Z" class="entry-date">
+    <time datetime="2025-09-23T16:00:00.000Z" class="entry-date">
         2025-09-24
     </time>
 </a>
     
     
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
     </footer>
 </article>
 
@@ -121,7 +129,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/16/[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E9%A1%B9%E9%93%BE%E6%8E%92%E5%88%97/" data-id="cmfwwrgg20005twerfe38fgqk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/16/[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E9%A1%B9%E9%93%BE%E6%8E%92%E5%88%97/" data-id="cmfwwuuzx00049wer43xj027m" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -171,7 +179,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/15/2025615-[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="cmfwwrgfx0000twer4sds35cg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/15/2025615-[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="cmfwwuuzs00009wergrm858vw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -221,7 +229,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmfwwrgg10004twerhgb8b5qx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmfwwuuzw00039wer6ks3a3sq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -271,7 +279,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmfwwrgg20008twer22l06znu" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmfwwuuzz000d9wer4wgk1cpv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -321,7 +329,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/03/22/Hello_World/" data-id="cmfwwrgg10003twer80l09xiw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/03/22/Hello_World/" data-id="cmfwwuuzv00019wer4hk62b5g" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -374,7 +382,7 @@
       <ul>
         
           <li>
-            <a href="/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/">(no title)</a>
+            <a href="/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/">2025CCPC网络赛题解兼游记</a>
           </li>
         
           <li>
@@ -402,7 +410,7 @@
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </aside>
 
@@ -445,21 +453,5 @@
 <div id="bg"></div>
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
