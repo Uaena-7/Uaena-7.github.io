@@ -4,9 +4,7 @@
   <meta charset="utf-8">
   
   
-  <meta name="description" content="B. Even Modulo Pair思路注意到，两个偶数取模余数必然是偶数。
-所以，当$a$中偶数的数量大于$1$时，输出任意俩偶数即可。
-当$a$中偶数的数量恰好等于$1$时，判断该偶数与其他所有数的取模余数是否是偶数，若有答案则输出，没有则转化为判断一个全部是奇数的序列是否存在满足题意条件答案" />
+  <meta name="description" content="B. Even Modulo Pair" />
   
 
   
@@ -15,18 +13,19 @@
   
   
   
-  <title>Uaena&#39;s Blog</title>
+  <title>B. Even Modulo Pair | Uaena&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="B. Even Modulo Pair思路注意到，两个偶数取模余数必然是偶数。 所以，当$a$中偶数的数量大于$1$时，输出任意俩偶数即可。 当$a$中偶数的数量恰好等于$1$时，判断该偶数与其他所有数的取模余数是否是偶数，若有答案则输出，没有则转化为判断一个全部是奇数的序列是否存在满足题意条件答案。 那么现在只剩下考虑$a$中全部是奇数的情况。 首先注意到，如果$a_i\times2&gt;a_">
+  <meta name="description" content="B. Even Modulo Pair">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Uaena&#39;s Blog">
+<meta property="og:title" content="B. Even Modulo Pair">
 <meta property="og:url" content="http://uaena-7.github.io/2025/11/09/B.%20Even%20Modulo%20Pair/index.html">
 <meta property="og:site_name" content="Uaena&#39;s Blog">
-<meta property="og:description" content="B. Even Modulo Pair思路注意到，两个偶数取模余数必然是偶数。 所以，当$a$中偶数的数量大于$1$时，输出任意俩偶数即可。 当$a$中偶数的数量恰好等于$1$时，判断该偶数与其他所有数的取模余数是否是偶数，若有答案则输出，没有则转化为判断一个全部是奇数的序列是否存在满足题意条件答案。 那么现在只剩下考虑$a$中全部是奇数的情况。 首先注意到，如果$a_i\times2&gt;a_">
+<meta property="og:description" content="B. Even Modulo Pair">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-11-09T06:22:52.640Z">
-<meta property="article:modified_time" content="2025-11-09T11:21:27.756Z">
+<meta property="article:published_time" content="2025-11-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-09T11:26:43.804Z">
 <meta property="article:author" content="Wensheng Teng">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
   
   
@@ -75,15 +74,24 @@
 
       <header class="entry-header">
         
+        
+  
+    <h1 class="entry-title article-title">
+      B. Even Modulo Pair
+    </h1>
+  
+
+        
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/11/09/B.%20Even%20Modulo%20Pair/" data-id="cmhrmjffo000494er9v3d1f3t" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/11/09/B.%20Even%20Modulo%20Pair/" data-id="cmhrmp2my0001pker15hyh43q" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="B-Even-Modulo-Pair"><a href="#B-Even-Modulo-Pair" class="headerlink" title="B. Even Modulo Pair"></a>B. Even Modulo Pair</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>注意到，两个偶数取模余数必然是偶数。</p>
+        <h1 id="B-Even-Modulo-Pair"><a href="#B-Even-Modulo-Pair" class="headerlink" title="B. Even Modulo Pair"></a>B. Even Modulo Pair</h1><span id="more"></span>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>注意到，两个偶数取模余数必然是偶数。</p>
 <p>所以，当$a$中偶数的数量大于$1$时，输出任意俩偶数即可。</p>
 <p>当$a$中偶数的数量恰好等于$1$时，判断该偶数与其他所有数的取模余数是否是偶数，若有答案则输出，没有则转化为判断一个全部是奇数的序列是否存在满足题意条件答案。</p>
 <p>那么现在只剩下考虑$a$中全部是奇数的情况。</p>
@@ -102,12 +110,15 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
 
     <footer class="entry-meta">
     <a href="/2025/11/09/B.%20Even%20Modulo%20Pair/">
-    <time datetime="2025-11-09T06:22:52.640Z" class="entry-date">
+    <time datetime="2025-11-08T16:00:00.000Z" class="entry-date">
         2025-11-09
     </time>
 </a>
     
     
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
     </footer>
 </article>
 
@@ -148,7 +159,7 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
       <ul>
         
           <li>
-            <a href="/2025/11/09/B.%20Even%20Modulo%20Pair/">(no title)</a>
+            <a href="/2025/11/09/B.%20Even%20Modulo%20Pair/">B. Even Modulo Pair</a>
           </li>
         
           <li>
@@ -176,7 +187,7 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </aside>
 
@@ -219,21 +230,5 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
 <div id="bg"></div>
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

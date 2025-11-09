@@ -69,39 +69,42 @@
 
       <header class="entry-header">
         
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2025/11/09/B.%20Even%20Modulo%20Pair/">B. Even Modulo Pair</a>
+    </h1>
+  
+
+        
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/11/09/B.%20Even%20Modulo%20Pair/" data-id="cmhrmjffo000494er9v3d1f3t" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/11/09/B.%20Even%20Modulo%20Pair/" data-id="cmhrmp2my0001pker15hyh43q" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="B-Even-Modulo-Pair"><a href="#B-Even-Modulo-Pair" class="headerlink" title="B. Even Modulo Pair"></a>B. Even Modulo Pair</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>注意到，两个偶数取模余数必然是偶数。</p>
-<p>所以，当$a$中偶数的数量大于$1$时，输出任意俩偶数即可。</p>
-<p>当$a$中偶数的数量恰好等于$1$时，判断该偶数与其他所有数的取模余数是否是偶数，若有答案则输出，没有则转化为判断一个全部是奇数的序列是否存在满足题意条件答案。</p>
-<p>那么现在只剩下考虑$a$中全部是奇数的情况。</p>
-<p>首先注意到，如果$a_i\times2&gt;a_{i+1}$那么：</p>
-<script type="math/tex; mode=display">
-a_{i+1}\ \%\ a_i=a_{i+1}-a_i</script><p>奇数差为偶数。</p>
-<p>所以，$a_{i+1} \% a_i$为奇数时一定满足：</p>
-<script type="math/tex; mode=display">
-a_i\times2< a_{i+1}</script><p>那么如果$a$中没有答案，就一定满足：</p>
-<script type="math/tex; mode=display">
-a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1=1$，整个序列也会在$O(log_{2}1e9)$的时间复杂度里超过所给数据范围。也就是说，<strong><em>在全为奇数的$a$中如果满足上式，则$n$一定很小，可以暴力枚举。如果不满足上式，则可以用$O(n)$​的复杂度检查出来，得到对应答案。</em></strong></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">const int N = 1e5 + 7;</span><br><span class="line">int t, n;</span><br><span class="line">int main() &#123;</span><br><span class="line">    ios::sync_with_stdio(0);</span><br><span class="line">    cin.tie(0), cout.tie(0);</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    while (t--) &#123;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        vector&lt;int&gt; a(n + 1), odd, even;</span><br><span class="line">        for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            cin &gt;&gt; a[i];</span><br><span class="line">            if (a[i] &amp; 1) &#123;</span><br><span class="line">                odd.push_back(a[i]);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                even.push_back(a[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (even.size() &gt; 1) &#123;</span><br><span class="line">            cout &lt;&lt; even[0] &lt;&lt; &quot; &quot; &lt;&lt; even[1] &lt;&lt; &quot;\n&quot;;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        bool find = false;</span><br><span class="line">        if (even.size() == 1) &#123;</span><br><span class="line">            for (auto it : odd) &#123;</span><br><span class="line">                if (!(max(it, even[0]) % min(it, even[0]) &amp; 1)) &#123;</span><br><span class="line">                    cout &lt;&lt; min(it, even[0]) &lt;&lt; &quot; &quot; &lt;&lt; max(it, even[0]) &lt;&lt; &quot;\n&quot;;</span><br><span class="line">                    find = true;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (find) continue;</span><br><span class="line">        int last = -1;</span><br><span class="line">        for (auto it : odd) &#123;</span><br><span class="line">            if (last != -1) &#123;</span><br><span class="line">                if (2 * last &gt; it) &#123;</span><br><span class="line">                    cout &lt;&lt; last &lt;&lt; &quot; &quot; &lt;&lt; it &lt;&lt; &quot;\n&quot;;</span><br><span class="line">                    find = true;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            last = it;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; (int)odd.size(); i++) &#123;</span><br><span class="line">            if (find) break;</span><br><span class="line">            for (int j = i + 1; j &lt; (int)odd.size(); j++) &#123;</span><br><span class="line">                if (!((odd[j] % odd[i]) &amp; 1)) &#123;</span><br><span class="line">                    cout &lt;&lt; odd[i] &lt;&lt; &quot; &quot; &lt;&lt; odd[j] &lt;&lt; &quot;\n&quot;;</span><br><span class="line">                    find = true;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!find) cout &lt;&lt; &quot;-1\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <h1 id="B-Even-Modulo-Pair"><a href="#B-Even-Modulo-Pair" class="headerlink" title="B. Even Modulo Pair"></a>B. Even Modulo Pair</h1>
+        
+          <p class="article-more-link">
+            <a href="/2025/11/09/B.%20Even%20Modulo%20Pair/#more" class="more-link">More <span class="meta-nav">→</span></a>
+          </p>
+        
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
     <a href="/2025/11/09/B.%20Even%20Modulo%20Pair/">
-    <time datetime="2025-11-09T06:22:52.640Z" class="entry-date">
+    <time datetime="2025-11-08T16:00:00.000Z" class="entry-date">
         2025-11-09
     </time>
 </a>
     
     
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
     </footer>
 </article>
 
@@ -126,7 +129,7 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/" data-id="cmhrmjffv000c94er0fmxc16y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/" data-id="cmhrmp2n8000cpker77t0bpyt" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -176,7 +179,7 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/16/[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E9%A1%B9%E9%93%BE%E6%8E%92%E5%88%97/" data-id="cmhrmjffu000b94er0b97195i" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/16/[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E9%A1%B9%E9%93%BE%E6%8E%92%E5%88%97/" data-id="cmhrmp2n9000dpker21xxfww5" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -226,7 +229,7 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/15/2025615-[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="cmhrmjffh000094er6gxy81du" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/15/2025615-[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="cmhrmp2mv0000pker1l8e3fog" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -276,7 +279,7 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmhrmjffo000394erfd0z3y02" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmhrmp2n10003pkerdivtgvc9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -326,7 +329,7 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmhrmjffp000594er6vay5t14" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/09/%E7%94%A8%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cmhrmp2n70009pker1rxhea8d" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -376,7 +379,7 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/03/22/Hello_World/" data-id="cmhrmjffl000194ercicx4zfn" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/03/22/Hello_World/" data-id="cmhrmp2n7000apkerf9lnf5qz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -429,7 +432,7 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
       <ul>
         
           <li>
-            <a href="/2025/11/09/B.%20Even%20Modulo%20Pair/">(no title)</a>
+            <a href="/2025/11/09/B.%20Even%20Modulo%20Pair/">B. Even Modulo Pair</a>
           </li>
         
           <li>
@@ -457,7 +460,7 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </aside>
 
@@ -500,21 +503,5 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
 <div id="bg"></div>
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
