@@ -84,7 +84,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/16/[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E9%A1%B9%E9%93%BE%E6%8E%92%E5%88%97/" data-id="cmhyqr1v8000aecer29nqg56b" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/16/[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E9%A1%B9%E9%93%BE%E6%8E%92%E5%88%97/" data-id="cmhyrcta3000aywer399va677" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -157,26 +157,26 @@ Lneed_1\ge Lneed_2，Qneed_1 \le Qneed_2</script><p>也就是说 <strong>构造�
 
 
 <section id="comments">
-  <!-- Gitalk 评论框 start -->
+  <!-- Gitalk 评论容器 -->
   <div id="gitalk-container" style="margin-top:50px;"></div>
 
   <!-- Gitalk CSS & JS -->
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
 
   <script>
+    // 处理国内访问 GitHub API 的网络问题：可以尝试在这里添加代理前缀
     var gitalk = new Gitalk({
-      clientID: 'Ov23limX0WUF4aVyOpqs',        // 替换为你的 GitHub Client ID
-      clientSecret: '05903494f3db0dda61d33db35fce74928b72d7f3',// 替换为你的 GitHub Client Secret
-      repo: 'Uaena-7.github.io',              // 用于存储评论的 GitHub 仓库
-      owner: 'Uaena-7',       // GitHub 用户名
-      admin: ['Uaena-7'],     // 管理员用户名
-      id: location.pathname,          // 保证每篇文章唯一
+      clientID: 'Ov23limX0WUF4aVyOpqs',
+      clientSecret: '05903494f3db0dda61d33db35fce74928b72d7f3',
+      repo: 'Uaena-7.github.io',
+      owner: 'Uaena-7',
+      admin: [&#34;Uaena-7&#34;],
+      id: window.location.pathname.replace(/\//g, '-'), // 保证唯一且格式安全
       distractionFreeMode: false
     });
     gitalk.render('gitalk-container');
   </script>
-  <!-- Gitalk 评论框 end -->
 </section>
 
 
