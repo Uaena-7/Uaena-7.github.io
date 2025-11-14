@@ -84,7 +84,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmhyrcta30008ywer738gck3r" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmhyrt25a000500er9qkg8avz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -138,25 +138,27 @@
 
 
 <section id="comments">
-  <!-- Gitalk 评论容器 -->
-  <div id="gitalk-container" style="margin-top:50px;"></div>
+  <!-- Valine 评论容器 -->
+  <div id="vcomments" style="margin-top:50px;"></div>
 
-  <!-- Gitalk CSS & JS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
-  <script src="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+  <!-- Valine JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
 
   <script>
-    // 处理国内访问 GitHub API 的网络问题：可以尝试在这里添加代理前缀
-    var gitalk = new Gitalk({
-      clientID: 'Ov23limX0WUF4aVyOpqs',
-      clientSecret: '05903494f3db0dda61d33db35fce74928b72d7f3',
-      repo: 'Uaena-7.github.io',
-      owner: 'Uaena-7',
-      admin: [&#34;Uaena-7&#34;],
-      id: window.location.pathname.replace(/\//g, '-'), // 保证唯一且格式安全
-      distractionFreeMode: false
+    new Valine({
+      el: '#vcomments',
+      appId: 'ZOsek5s8CSPmQCKGQFj0Wkmo-gzGzoHsz',
+      appKey: 'zZbrlr0scPnjzeR3fDiXzco2',
+      placeholder: '请输入评论...',
+      avatar: 'retro',
+      pageSize: 10,
+      highlight: true,
+      math: true,
+      path: window.location.pathname.replace(/\//g, '-'), // 保证每篇文章唯一
+      notify: false,
+      verify: false
     });
-    gitalk.render('gitalk-container');
   </script>
 </section>
 
