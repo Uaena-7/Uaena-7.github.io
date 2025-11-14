@@ -1,5 +1,5 @@
 ---
 title: Home
-layout: page
+layout: index
 ---
-欢迎来到我的博客！
+<%- page.posts %>
