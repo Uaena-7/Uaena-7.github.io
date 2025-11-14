@@ -84,7 +84,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/11/09/B.%20Even%20Modulo%20Pair/" data-id="cmhz4hko4000d2oeraxl50qln" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/11/09/B.%20Even%20Modulo%20Pair/" data-id="cmhz4mpsy0001qcerb7zugltg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -121,52 +121,6 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
 
     </footer>
 </article>
-
-<!-- 点赞模块 -->
-<div id="post-like-box" style="margin: 20px 0; text-align:center;">
-  <button id="like-btn" style="
-      padding: 8px 20px;
-      font-size: 16px;
-      cursor:pointer;
-      border-radius: 6px;
-      border: none;
-      background: #ff4d4f;
-      color: white;
-  ">
-    👍 点赞（<span id="like-count">0</span>）
-  </button>
-</div>
-
-<script>
-  const postId = "cmhz4hko4000d2oeraxl50qln";
-const Counter = AV.Object.extend('LikeCounter');
-const query = new AV.Query('LikeCounter');
-
-async function updateLikeCount() {
-  let obj = await query.equalTo('postId', postId).first();
-  if (!obj) {
-    obj = new Counter();
-    obj.set('postId', postId);
-    obj.set('likes', 0);
-    await obj.save();
-  }
-  document.getElementById('like-count').innerText = obj.get('likes');
-  return obj;
-}
-
-// 初始化点赞数
-let currentObj;
-updateLikeCount().then(obj => { currentObj = obj; });
-
-document.getElementById('like-btn').onclick = async () => {
-  if (!currentObj) return;
-  currentObj.increment('likes', 1);
-  await currentObj.save();
-  document.getElementById('like-count').innerText = currentObj.get('likes');
-};
-
-</script>
-
 
 
     
@@ -316,21 +270,5 @@ document.getElementById('like-btn').onclick = async () => {
 <div id="bg"></div>
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
