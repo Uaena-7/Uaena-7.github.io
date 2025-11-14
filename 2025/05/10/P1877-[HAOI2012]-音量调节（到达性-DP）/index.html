@@ -84,7 +84,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmhz4bs85000if0er5i0agr5c" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmhz4hko100042oerepiye35o" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -136,31 +136,33 @@
 </div>
 
 <script>
-  const postId = "cmhz4bs85000if0er5i0agr5c"; 
-  const Counter = AV.Object.extend('LikeCounter');
-  const query = new AV.Query('LikeCounter');
+  const postId = "cmhz4hko100042oerepiye35o";
+const Counter = AV.Object.extend('LikeCounter');
+const query = new AV.Query('LikeCounter');
 
-  // 获取点赞数
-  query.equalTo('postId', postId);
-  query.first().then(obj => {
-    if (obj) {
-      document.getElementById('like-count').innerText = obj.get('likes') || 0;
-    }
-  });
-
-  // 点赞事件
-  document.getElementById('like-btn').onclick = async () => {
-    let obj = await query.first();
-    if (!obj) {
-      obj = new Counter();
-      obj.set('postId', postId);
-      obj.set('likes', 1);
-    } else {
-      obj.increment('likes', 1);
-    }
+async function updateLikeCount() {
+  let obj = await query.equalTo('postId', postId).first();
+  if (!obj) {
+    obj = new Counter();
+    obj.set('postId', postId);
+    obj.set('likes', 0);
     await obj.save();
-    document.getElementById('like-count').innerText = obj.get('likes');
-  };
+  }
+  document.getElementById('like-count').innerText = obj.get('likes');
+  return obj;
+}
+
+// 初始化点赞数
+let currentObj;
+updateLikeCount().then(obj => { currentObj = obj; });
+
+document.getElementById('like-btn').onclick = async () => {
+  if (!currentObj) return;
+  currentObj.increment('likes', 1);
+  await currentObj.save();
+  document.getElementById('like-count').innerText = currentObj.get('likes');
+};
+
 </script>
 
 

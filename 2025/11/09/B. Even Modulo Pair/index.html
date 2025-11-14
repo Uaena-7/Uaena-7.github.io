@@ -84,7 +84,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/11/09/B.%20Even%20Modulo%20Pair/" data-id="cmhz4bs7w0000f0er7i5d5h4c" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/11/09/B.%20Even%20Modulo%20Pair/" data-id="cmhz4hko4000d2oeraxl50qln" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -138,31 +138,33 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
 </div>
 
 <script>
-  const postId = "cmhz4bs7w0000f0er7i5d5h4c"; 
-  const Counter = AV.Object.extend('LikeCounter');
-  const query = new AV.Query('LikeCounter');
+  const postId = "cmhz4hko4000d2oeraxl50qln";
+const Counter = AV.Object.extend('LikeCounter');
+const query = new AV.Query('LikeCounter');
 
-  // 获取点赞数
-  query.equalTo('postId', postId);
-  query.first().then(obj => {
-    if (obj) {
-      document.getElementById('like-count').innerText = obj.get('likes') || 0;
-    }
-  });
-
-  // 点赞事件
-  document.getElementById('like-btn').onclick = async () => {
-    let obj = await query.first();
-    if (!obj) {
-      obj = new Counter();
-      obj.set('postId', postId);
-      obj.set('likes', 1);
-    } else {
-      obj.increment('likes', 1);
-    }
+async function updateLikeCount() {
+  let obj = await query.equalTo('postId', postId).first();
+  if (!obj) {
+    obj = new Counter();
+    obj.set('postId', postId);
+    obj.set('likes', 0);
     await obj.save();
-    document.getElementById('like-count').innerText = obj.get('likes');
-  };
+  }
+  document.getElementById('like-count').innerText = obj.get('likes');
+  return obj;
+}
+
+// 初始化点赞数
+let currentObj;
+updateLikeCount().then(obj => { currentObj = obj; });
+
+document.getElementById('like-btn').onclick = async () => {
+  if (!currentObj) return;
+  currentObj.increment('likes', 1);
+  await currentObj.save();
+  document.getElementById('like-count').innerText = currentObj.get('likes');
+};
+
 </script>
 
 
