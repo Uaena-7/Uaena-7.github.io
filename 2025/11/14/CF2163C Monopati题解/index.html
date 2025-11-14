@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="CF2163C Monopati题解" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>CF2163C Monopati题解 | Uaena&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CF2163C Monopati题解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF2163C Monopati题解">
+<meta property="og:url" content="http://uaena-7.github.io/2025/11/14/CF2163C%20Monopati%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Uaena&#39;s Blog">
+<meta property="og:description" content="CF2163C Monopati题解">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-11-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-14T10:13:56.579Z">
+<meta property="article:author" content="Wensheng Teng">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="Uaena&#39;s Blog" rel="home">Uaena&#39;s Blog</a>
+      </h1>
+      
+        <h2 class="site-description hitokoto"></h2>
+        <script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js"></script>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-CF2163C Monopati题解" class="post-CF2163C Monopati题解 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      CF2163C Monopati题解
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/11/14/CF2163C%20Monopati%E9%A2%98%E8%A7%A3/" data-id="cmhype1e0000424er5dnp21m6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="CF2163C-Monopati题解"><a href="#CF2163C-Monopati题解" class="headerlink" title="CF2163C Monopati题解"></a>CF2163C Monopati题解</h1><span id="more"></span>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>补题的时候只有$cf$官解和洛谷一篇题解，两篇对于此题如何检查整数对$(l,r)$都是一笔草草带过。导致我这种蒟蒻只能花很多时间（菜导致的）看代码理解。为造福后之来补题者，遂$AC$完来写一篇<strong>事无巨细</strong>的题解。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>如果对于$f(l,r)$是有路径的，那么$f(l,r+1)$也必定有路径。因为$l\le a_{i,j} \le r$的格子有路径，$l\le a_{i,j} \le r+1$的格子相较于前者还增加了$r+1\le a_{i,j} \le r+1$的格子，那么肯定也有路径。</p>
+<p>如果对于$f(l,r_1)，f(l+1,r_2)$中的$r_1,r_2$分别是使其有路径的最小的$r$，那么$r_1 \le r_2$。因为$l\le a_{i,j} \le r_1$的格子有路径，$l+1\le a_{i,j} \le r_1$的格子相较于前者减少了了$l\le a_{i,j} \le l$的格子，那么可能会导致路径格子缺失。所以，对于固定$l+1$时，我们可能需要增加$r$来扩大范围，增加格子。也就是说$r_1 \le r_2$，当且仅当$f(l+1,r_1)$也有路径时等号成立。</p>
+<p>所以，对于每一个$l$，如果我们能寻找到最小能使它有路径的$r$，则将$f(l,[r,2 \times n])$累加到答案里。然后将$l++$，从上一个$r$开始寻找下一个有路径的$r$​。那么实现这句话的算法显然就是<strong><em>双指针</em></strong>。 </p>
+<p>重点来了，我怎么高效的检查$f(l,r)$是否有路径？我们观察上述双指针思路发现：当从$f(l,r)$过渡到$f(l,r+1)$时，$a_{i,j}=r+1$的格子更新为可以通行；当从$f(l,r)$过渡到$f(l+1,r)$时，$a_{i,j}=l$的格子更新为不可通行。也就是说，如果我们使用两个$set<int>$分别来维护两行不可到达的格点，<strong>每个格点只被加入一次，删除一次。</strong>维护的时间复杂度$O(nlog_n)$。</p>
+<p>我们记从左上角开始，第一行向右可以到达的最远格点为$col_1$，从右下角开始，第二行向左可以到达的最远格点为$col_2$，那么如果$col_1 \ge col_2$，则$f(l,r)$有路径。$col_1$就是第一个$set$的$begin()-1$，$col_2$就是第二个$set$的$rbegin()+1$。查询的时间复杂度$O(1)$。</p>
+<p>更细节的，对于每一次更新，我们怎么找到需要更新的格点呢？我们使用一个桶$pos[i]$，记录值为$i$的格点坐标。每个值最多被当前需要更新的$l$或$r$分别访问一次，直接枚举即可。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">const int N = 2e5 + 7;</span><br><span class="line">ll t, n;</span><br><span class="line">int main() &#123;</span><br><span class="line">    ios::sync_with_stdio(0);</span><br><span class="line">    cin.tie(0), cout.tie(0);</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    while (t--) &#123;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; a(3, vector&lt;int&gt;(n + 1));</span><br><span class="line">        vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt; pos(2 * n + 1);</span><br><span class="line">        vector&lt;set&lt;int&gt;&gt; row(3);</span><br><span class="line">        for (int i = 1; i &lt;= 2; i++) &#123;</span><br><span class="line">            for (int j = 1; j &lt;= n; j++) &#123;</span><br><span class="line">                cin &gt;&gt; a[i][j];</span><br><span class="line">                pos[a[i][j]].push_back(&#123;i, j&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt;= 2; i++) &#123;</span><br><span class="line">            for (int j = 1; j &lt;= n; j++) &#123;</span><br><span class="line">                row[i].insert(j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        row[1].insert(INF);</span><br><span class="line">        row[2].insert(-INF);</span><br><span class="line">        ll ans = 0;</span><br><span class="line">        int l = 1, r = 1;</span><br><span class="line">        auto check = [&amp;]() &#123;</span><br><span class="line">            if (row[1].count(1)) return false;</span><br><span class="line">            if (row[2].count(n)) return false;</span><br><span class="line">            if (*row[1].begin() - 1 &lt; *row[2].rbegin() + 1) return false;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;;</span><br><span class="line">        auto add = [&amp;](int x) &#123;</span><br><span class="line">            for (auto it : pos[x]) &#123;</span><br><span class="line">                row[it.first].erase(it.second);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        auto del = [&amp;](int x) &#123;</span><br><span class="line">            for (auto it : pos[x]) &#123;</span><br><span class="line">                row[it.first].insert(it.second);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        add(1);</span><br><span class="line">        for (l = 1; l &lt;= 2 * n; l++) &#123;</span><br><span class="line">            while (r + 1 &lt;= 2 * n &amp;&amp; !check()) &#123;</span><br><span class="line">                add(++r);</span><br><span class="line">            &#125;</span><br><span class="line">            if (!check()) break;</span><br><span class="line">            ans += 2 * n - r + 1;</span><br><span class="line">            del(l);</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; ans &lt;&lt; &quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2025/11/14/CF2163C%20Monopati%E9%A2%98%E8%A7%A3/">
+    <time datetime="2025-11-13T16:00:00.000Z" class="entry-date">
+        2025-11-14
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2025/11/09/B.%20Even%20Modulo%20Pair/" rel="next">B. Even Modulo Pair <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2025/11/14/CF2163C%20Monopati%E9%A2%98%E8%A7%A3/">CF2163C Monopati题解</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/09/B.%20Even%20Modulo%20Pair/">B. Even Modulo Pair</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/">2025CCPC网络赛题解兼游记</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/16/%5B%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B%5D-%E9%A1%B9%E9%93%BE%E6%8E%92%E5%88%97/">[蓝桥杯 2025 国 B] 项链排列</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/15/2025615-%5B%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B%5D-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%97%E7%AC%A6%E4%B8%B2/">[蓝桥杯 2025 国 B] 斐波那契字符串</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a><span class="tag-list-count">5</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 15px;">游记</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 20px;">题解</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2025 Wensheng Teng
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
