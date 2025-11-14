@@ -87,7 +87,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/" data-id="cmhyrt25b000800er7dl757ii" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/" data-id="cmhz4ap8y000894er3kn2da40" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -122,6 +122,50 @@
     </footer>
 </article>
 
+<!-- 点赞模块 -->
+<div id="post-like-box" style="margin: 20px 0; text-align:center;">
+  <button id="like-btn" style="
+      padding: 8px 20px;
+      font-size: 16px;
+      cursor:pointer;
+      border-radius: 6px;
+      border: none;
+      background: #ff4d4f;
+      color: white;
+  ">
+    👍 点赞（<span id="like-count">0</span>）
+  </button>
+</div>
+
+<script>
+  const postId = "cmhz4ap8y000894er3kn2da40"; 
+  const Counter = AV.Object.extend('LikeCounter');
+  const query = new AV.Query('LikeCounter');
+
+  // 获取点赞数
+  query.equalTo('postId', postId);
+  query.first().then(obj => {
+    if (obj) {
+      document.getElementById('like-count').innerText = obj.get('likes') || 0;
+    }
+  });
+
+  // 点赞事件
+  document.getElementById('like-btn').onclick = async () => {
+    let obj = await query.first();
+    if (!obj) {
+      obj = new Counter();
+      obj.set('postId', postId);
+      obj.set('likes', 1);
+    } else {
+      obj.increment('likes', 1);
+    }
+    await obj.save();
+    document.getElementById('like-count').innerText = obj.get('likes');
+  };
+</script>
+
+
 
     
 <nav class="nav-single">
@@ -140,10 +184,21 @@
 
 
 <section id="comments">
+
+  <!-- ⭐ LeanCloud SDK（必须在 Valine 之前加载） -->
+  <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4/dist/av-min.js"></script>
+  <script>
+    AV.init({
+      appId: 'ZOsek5s8CSPmQCKGQFj0Wkmo-gzGzoHsz',
+      appKey: 'zZbrlr0scPnjzeR3fDiXzco2',
+      serverURL: ''  // 必须配置
+    });
+  </script>
+
   <!-- Valine 评论容器 -->
   <div id="vcomments" style="margin-top:50px;"></div>
 
-  <!-- Valine JS -->
+  <!-- Valine CSS & JS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.css">
   <script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
 
@@ -152,16 +207,18 @@
       el: '#vcomments',
       appId: 'ZOsek5s8CSPmQCKGQFj0Wkmo-gzGzoHsz',
       appKey: 'zZbrlr0scPnjzeR3fDiXzco2',
+      serverURL: '', // 让 Valine 走国内节点
       placeholder: '请输入评论...',
       avatar: 'retro',
       pageSize: 10,
       highlight: true,
       math: true,
-      path: window.location.pathname.replace(/\//g, '-'), // 保证每篇文章唯一
+      path: window.location.pathname, // 使用原生路径
       notify: false,
       verify: false
     });
   </script>
+
 </section>
 
 
