@@ -25,7 +25,7 @@
 <meta property="og:image" content="c:\Users\10073\Desktop\2025CCPCrank.png">
 <meta property="og:image" content="c:\Users\10073\Desktop\G%E9%A2%98%E9%9D%A2.png">
 <meta property="article:published_time" content="2025-09-24T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-14T18:31:12.159Z">
+<meta property="article:modified_time" content="2025-11-14T20:17:08.436Z">
 <meta property="article:author" content="Wensheng Teng">
 <meta property="article:tag" content="游记">
 <meta name="twitter:card" content="summary">
@@ -104,7 +104,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/" data-id="cmhzaqdx50001e4er3ojo8zy5" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/09/24/2025CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B%E9%A2%98%E8%A7%A3%E5%85%BC%E6%B8%B8%E8%AE%B0/" data-id="cmhzaug8i0003userd39q3l9p" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -116,7 +116,7 @@
 <p><img src="C:\Users\10073\Desktop\2025CCPCrank.png"></p>
 <p>榜下就是两个湖南大学，下面还有不少92还是蛮开心的哈(#^.^#)</p>
 <h2 id="G题（根号分治与记忆化与二分）"><a href="#G题（根号分治与记忆化与二分）" class="headerlink" title="G题（根号分治与记忆化与二分）"></a>G题（根号分治与记忆化与二分）</h2><p><img src="C:\Users\10073\Desktop\G题面.png"></p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>我们用$map$记录所有数字出现的次数$map&lt;ll,int&gt;cnt[i]$和其每次的出现下标$map&lt;ll,vector<int>&gt;pos[i]$，将$cnt[i]\ge\sqrt n$的数记为重数，其他记为非重数。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>我们用$map$记录所有数字出现的次数$map&lt;ll,int&gt;cnt[i]$和其每次的出现下标   $map&lt;ll,vector<int>&gt;pos[i]$ ，将$cnt[i] \ge \sqrt{n}$的数记为重数，其他记为非重数。</p>
 <p>对于非重数的询问，我们只需要在$pos[y]$中找到每一个大于$pos[x][i]$的数。因为是非重数，所以最多查找$\sqrt n$次，每一次在$pos[y]$中查找，其长度最多为$n$，用二分则是$O(log_n)$，综合则是$O(\sqrt n log_n)$。如果全是非重数，对于$q&#x3D;n$次询问，整体时间复杂度是$O(n\sqrt n log_n)$，可过。</p>
 <p>对于重数的询问，我们可以提前记忆化答案。我们找出每一个重数$x$对于每一个数的答案记为$ans[x][y]$。例如样例中5是重数，我们记录$ans[5][1],ans[5][2],ans[5][3],ans[5][4]…$这样的答案记录非常简单，只需要从右到左，记录当前重数$x$出现的次数$cnt_multi$，遇到重数本身就$cnt_multi++$，遇到非重数$a[i]$就意味着$a[i]$左边的$x$都可以与当前非重数组成答案。于是$ans[x][a[i]]+&#x3D;cnt[x]-cnt_multi+1$。对于一个重数的答案记录时间复杂度是$O(n)$，因为其出现的次数大于等于$\sqrt n$，所以重数的数量不会大于$\sqrt n$，故所有重数的答案记忆化时间复杂度$O(n\sqrt n)$。每次询问都是$O(1)$。</p>
 <p>总体时间复杂度$O(n\sqrt n log_n)$，对于$n_{max}&#x3D;10^5$，可过。</p>
