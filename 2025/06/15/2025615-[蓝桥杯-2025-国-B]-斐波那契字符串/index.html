@@ -39,6 +39,9 @@
   
   <!-- baidu webmaster push -->
   <script src='//push.zhanzhang.baidu.com/push.js'></script>
+  <!-- MathJax CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <meta name="generator" content="Hexo 7.3.0"></head>
 <body class="home blog custom-background custom-font-enabled single-author">
   <div id="page" class="hfeed site">
@@ -84,13 +87,13 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/15/2025615-[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="cmhz4w31d00001wer6gzm7n99" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/06/15/2025615-[%E8%93%9D%E6%A1%A5%E6%9D%AF-2025-%E5%9B%BD-B]-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="cmhz576mn0000w0erg5ilgsgm" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="蓝桥杯-2025-国-B-斐波那契字符串"><a href="#蓝桥杯-2025-国-B-斐波那契字符串" class="headerlink" title="[蓝桥杯 2025 国 B] 斐波那契字符串"></a>[蓝桥杯 2025 国 B] 斐波那契字符串</h1><span id="more"></span>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css"><h1 id="蓝桥杯-2025-国-B-斐波那契字符串"><a href="#蓝桥杯-2025-国-B-斐波那契字符串" class="headerlink" title="[蓝桥杯 2025 国 B] 斐波那契字符串"></a>[蓝桥杯 2025 国 B] 斐波那契字符串</h1><span id="more"></span>
 <h2 id="考场（废话）"><a href="#考场（废话）" class="headerlink" title="考场（废话）"></a>考场（废话）</h2><p>写到 D 已经过去一个小时，迅速写了一个暴力，直接把 $S_n$ 求出来数逆序数。然后这里点名表扬一波长沙理工电脑，$n=100$ 测一波电脑直接卡死，被迫换机子。换好机子后冷静打表找到规律。</p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>读题我们知道字符串 $S$ 由 01 构成，又</p>
 <script type="math/tex; mode=display">
@@ -267,5 +270,21 @@ One [i] = One [i-1]+One [i-2]</script><p>别忘记取模！</p>
 <div id="bg"></div>
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

@@ -39,6 +39,9 @@
   
   <!-- baidu webmaster push -->
   <script src='//push.zhanzhang.baidu.com/push.js'></script>
+  <!-- MathJax CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <meta name="generator" content="Hexo 7.3.0"></head>
 <body class="home blog custom-background custom-font-enabled single-author">
   <div id="page" class="hfeed site">
@@ -84,13 +87,13 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/11/14/CF2163C%20Monopati%E9%A2%98%E8%A7%A3/" data-id="cmhz4w31h00031werfl48dkhq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/11/14/CF2163C%20Monopati%E9%A2%98%E8%A7%A3/" data-id="cmhz576mx000aw0er33nu2tjv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="CF2163C-Monopati题解"><a href="#CF2163C-Monopati题解" class="headerlink" title="CF2163C Monopati题解"></a>CF2163C Monopati题解</h1><span id="more"></span>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css"><h1 id="CF2163C-Monopati题解"><a href="#CF2163C-Monopati题解" class="headerlink" title="CF2163C Monopati题解"></a>CF2163C Monopati题解</h1><span id="more"></span>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>补题的时候只有$cf$官解和洛谷一篇题解，两篇对于此题如何检查整数对$(l,r)$都是一笔草草带过。导致我这种蒟蒻只能花很多时间（菜导致的）看代码理解。为造福后之来补题者，遂$AC$完来写一篇<strong>事无巨细</strong>的题解。</p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>如果对于$f(l,r)$是有路径的，那么$f(l,r+1)$也必定有路径。因为$l\le a_{i,j} \le r$的格子有路径，$l\le a_{i,j} \le r+1$的格子相较于前者还增加了$r+1\le a_{i,j} \le r+1$的格子，那么肯定也有路径。</p>
 <p>如果对于$f(l,r_1)，f(l+1,r_2)$中的$r_1,r_2$分别是使其有路径的最小的$r$，那么$r_1 \le r_2$。因为$l\le a_{i,j} \le r_1$的格子有路径，$l+1\le a_{i,j} \le r_1$的格子相较于前者减少了了$l\le a_{i,j} \le l$的格子，那么可能会导致路径格子缺失。所以，对于固定$l+1$时，我们可能需要增加$r$来扩大范围，增加格子。也就是说$r_1 \le r_2$，当且仅当$f(l+1,r_1)$也有路径时等号成立。</p>
@@ -253,5 +256,21 @@
 <div id="bg"></div>
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

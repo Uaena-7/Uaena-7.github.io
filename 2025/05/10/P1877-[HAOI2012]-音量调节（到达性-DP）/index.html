@@ -39,6 +39,9 @@
   
   <!-- baidu webmaster push -->
   <script src='//push.zhanzhang.baidu.com/push.js'></script>
+  <!-- MathJax CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <meta name="generator" content="Hexo 7.3.0"></head>
 <body class="home blog custom-background custom-font-enabled single-author">
   <div id="page" class="hfeed site">
@@ -84,13 +87,13 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmhz4w31j00091werctakheac" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/05/10/P1877-[HAOI2012]-%E9%9F%B3%E9%87%8F%E8%B0%83%E8%8A%82%EF%BC%88%E5%88%B0%E8%BE%BE%E6%80%A7-DP%EF%BC%89/" data-id="cmhz576mv0005w0erh8x437ol" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="P1877-HAOI2012-音量调节（到达性-DP）"><a href="#P1877-HAOI2012-音量调节（到达性-DP）" class="headerlink" title="P1877 [HAOI2012] 音量调节（到达性 DP）"></a>P1877 [HAOI2012] 音量调节（到达性 DP）</h1><span id="more"></span>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css"><h1 id="P1877-HAOI2012-音量调节（到达性-DP）"><a href="#P1877-HAOI2012-音量调节（到达性-DP）" class="headerlink" title="P1877 [HAOI2012] 音量调节（到达性 DP）"></a>P1877 [HAOI2012] 音量调节（到达性 DP）</h1><span id="more"></span>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>清晨起来打水题，竟然普及-被卡住。细细思索，此题思路蛮妙，遂写一篇题解。</p>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1877">题目在这里</a>  </p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为每一次的音量调节我们 <strong>必须选择</strong> 升调或降调，所以我们可以设计状态 $dp[i][j]$ 表示在第 $i$ 次调音时，能否达到 $j$ 的音量。  </p>
@@ -258,5 +261,21 @@
 <div id="bg"></div>
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
