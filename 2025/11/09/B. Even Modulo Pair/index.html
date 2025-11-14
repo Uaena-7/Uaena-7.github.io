@@ -84,7 +84,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/11/09/B.%20Even%20Modulo%20Pair/" data-id="cmhype1dz000324er6olh7d29" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2025/11/09/B.%20Even%20Modulo%20Pair/" data-id="cmhyqr1v50001ecer6w964w5a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -138,6 +138,29 @@ a_1\times2<a_2,a_{2}\times2<a_{3},...,a_{n-1}\times2<a_{n}</script><p>即使$a_1
 
 
 
+
+<section id="comments">
+  <!-- Gitalk 评论框 start -->
+  <div id="gitalk-container" style="margin-top:50px;"></div>
+
+  <!-- Gitalk CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+  <script>
+    var gitalk = new Gitalk({
+      clientID: 'Ov23limX0WUF4aVyOpqs',        // 替换为你的 GitHub Client ID
+      clientSecret: '05903494f3db0dda61d33db35fce74928b72d7f3',// 替换为你的 GitHub Client Secret
+      repo: 'Uaena-7.github.io',              // 用于存储评论的 GitHub 仓库
+      owner: 'Uaena-7',       // GitHub 用户名
+      admin: ['Uaena-7'],     // 管理员用户名
+      id: location.pathname,          // 保证每篇文章唯一
+      distractionFreeMode: false
+    });
+    gitalk.render('gitalk-container');
+  </script>
+  <!-- Gitalk 评论框 end -->
+</section>
 
 
 </div></div>
