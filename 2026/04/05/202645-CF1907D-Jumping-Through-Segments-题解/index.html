@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   
   
-  <meta name="description" content="CF1907D Jumping Through Segments 题解思路读题可知 $k$ 表示我们可以行动的范围，显而易见的，行动范围越大越容易完成在区域之间的移动，$k$ 有单调性。所以我们可以二分答案 $k$。于是问题变成了：检验固定的 $k$​ 能否完成区域的跳跃？
-我们记 $L$ 为当前可" />
+  <meta name="description" content="CF1907D Jumping Through Segments 题解" />
   
 
   
@@ -16,15 +15,15 @@
   
   <title>CF1907D Jumping Through Segments 题解 | Uaena&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CF1907D Jumping Through Segments 题解思路读题可知 $k$ 表示我们可以行动的范围，显而易见的，行动范围越大越容易完成在区域之间的移动，$k$ 有单调性。所以我们可以二分答案 $k$。于是问题变成了：检验固定的 $k$​ 能否完成区域的跳跃？ 我们记 $L$ 为当前可到达的合法区域最左端、$R$ 为当前可到达的合法区域最右端。$[L,R]$​ 表示我们当前可到达的合">
+  <meta name="description" content="CF1907D Jumping Through Segments 题解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CF1907D Jumping Through Segments 题解">
 <meta property="og:url" content="http://uaena-7.github.io/2026/04/05/202645-CF1907D-Jumping-Through-Segments-%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Uaena&#39;s Blog">
-<meta property="og:description" content="CF1907D Jumping Through Segments 题解思路读题可知 $k$ 表示我们可以行动的范围，显而易见的，行动范围越大越容易完成在区域之间的移动，$k$ 有单调性。所以我们可以二分答案 $k$。于是问题变成了：检验固定的 $k$​ 能否完成区域的跳跃？ 我们记 $L$ 为当前可到达的合法区域最左端、$R$ 为当前可到达的合法区域最右端。$[L,R]$​ 表示我们当前可到达的合">
+<meta property="og:description" content="CF1907D Jumping Through Segments 题解">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-04-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-05T11:54:01.738Z">
+<meta property="article:modified_time" content="2026-04-05T11:54:38.860Z">
 <meta property="article:author" content="Wensheng Teng">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
@@ -102,13 +101,15 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2026/04/05/202645-CF1907D-Jumping-Through-Segments-%E9%A2%98%E8%A7%A3/" data-id="cmnlpefc20004oser0agg8tos" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2026/04/05/202645-CF1907D-Jumping-Through-Segments-%E9%A2%98%E8%A7%A3/" data-id="cmnlpfecm0008cker5lui8i4d" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="CF1907D-Jumping-Through-Segments-题解"><a href="#CF1907D-Jumping-Through-Segments-题解" class="headerlink" title="CF1907D Jumping Through Segments 题解"></a>CF1907D Jumping Through Segments 题解</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>读题可知 $k$ 表示我们可以行动的范围，显而易见的，行动范围越大越容易完成在区域之间的移动，$k$ 有单调性。所以我们可以二分答案 $k$。于是问题变成了：检验固定的 $k$​ 能否完成区域的跳跃？</p>
+        <h1 id="CF1907D-Jumping-Through-Segments-题解"><a href="#CF1907D-Jumping-Through-Segments-题解" class="headerlink" title="CF1907D Jumping Through Segments 题解"></a>CF1907D Jumping Through Segments 题解</h1><span id="more"></span>
+
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>读题可知 $k$ 表示我们可以行动的范围，显而易见的，行动范围越大越容易完成在区域之间的移动，$k$ 有单调性。所以我们可以二分答案 $k$。于是问题变成了：检验固定的 $k$​ 能否完成区域的跳跃？</p>
 <p>我们记 $L$ 为当前可到达的合法区域最左端、$R$ 为当前可到达的合法区域最右端。$[L,R]$​ 表示我们当前可到达的合法区域。其中“合法”的含义是，在第 $i$ 次行动时，我们必须落在 $[l_i,r_i]$​ 的题给区域中。</p>
 <p>在第 $i$ 次行动时，可到达的区域为 $[max{0,L-k},R+k]$，为维护 $[L,R]$ 其合法性，前式与 $[l_i,r_i]$ 做交集即可，即：<br>$$<br>[max{max{0,L-k},l_i},min{R+k,r_i}]<br>$$<br>当 $R&lt;L$ 时，表示区域在给定 $k$​ 下没有合法区域。 </p>
 <p>时间复杂度 $O(nlog_n)$。</p>
