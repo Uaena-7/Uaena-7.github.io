@@ -23,7 +23,7 @@
 <meta property="og:description" content="CF1907D Jumping Through Segments 题解">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-04-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-05T11:54:38.860Z">
+<meta property="article:modified_time" content="2026-04-06T13:22:38.663Z">
 <meta property="article:author" content="Wensheng Teng">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
@@ -101,7 +101,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2026/04/05/202645-CF1907D-Jumping-Through-Segments-%E9%A2%98%E8%A7%A3/" data-id="cmnlpfecm0008cker5lui8i4d" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://uaena-7.github.io/2026/04/05/202645-CF1907D-Jumping-Through-Segments-%E9%A2%98%E8%A7%A3/" data-id="cmnoakcom0001roerel9mhbu5" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -111,8 +111,8 @@
 
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>读题可知 $k$ 表示我们可以行动的范围，显而易见的，行动范围越大越容易完成在区域之间的移动，$k$ 有单调性。所以我们可以二分答案 $k$。于是问题变成了：检验固定的 $k$​ 能否完成区域的跳跃？</p>
 <p>我们记 $L$ 为当前可到达的合法区域最左端、$R$ 为当前可到达的合法区域最右端。$[L,R]$​ 表示我们当前可到达的合法区域。其中“合法”的含义是，在第 $i$ 次行动时，我们必须落在 $[l_i,r_i]$​ 的题给区域中。</p>
-<p>在第 $i$ 次行动时，可到达的区域为 $[max{0,L-k},R+k]$，为维护 $[L,R]$ 其合法性，前式与 $[l_i,r_i]$ 做交集即可，即：<br>$$<br>[max{max{0,L-k},l_i},min{R+k,r_i}]<br>$$<br>当 $R&lt;L$ 时，表示区域在给定 $k$​ 下没有合法区域。 </p>
-<p>时间复杂度 $O(nlog_n)$。</p>
+<p>在第 $i$ 次行动时，可到达的区域为 $[\max{0,L-k},R+k]$，为维护 $[L,R]$ 其合法性，前式与 $[l_i,r_i]$ 做交集即可，即：<br>$$<br>[\max{\max{0,L-k},l_i},\min{R+k,r_i}]<br>$$<br>当 $R&lt;L$ 时，表示区域在给定 $k$​ 下没有合法区域。 </p>
+<p>时间复杂度 $O(n\log_n)$。</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">const int N = 2e5 + 7;</span><br><span class="line">int t, n;</span><br><span class="line">int main() &#123;</span><br><span class="line">    ios::sync_with_stdio(0);</span><br><span class="line">    cin.tie(0), cout.tie(0);</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    while (t--) &#123;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        vector&lt;pair&lt;ll, ll&gt;&gt; pos(n + 1);</span><br><span class="line">        for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            cin &gt;&gt; pos[i].first &gt;&gt; pos[i].second;</span><br><span class="line">        &#125;</span><br><span class="line">        ll l = 0, r = INF;</span><br><span class="line">        while (l &lt;= r) &#123;</span><br><span class="line">            ll k = (l + r) &gt;&gt; 1;</span><br><span class="line">            ll low = 0, up = 0;</span><br><span class="line">            bool f = true;</span><br><span class="line">            // cout &lt;&lt; k &lt;&lt; &quot;\n&quot;;</span><br><span class="line">            for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">                ll curlow = max((ll)0, low - k);</span><br><span class="line">                curlow = max(curlow, pos[i].first);</span><br><span class="line">                ll curup = min(up + k, pos[i].second);</span><br><span class="line">                // cout &lt;&lt; curlow &lt;&lt; &quot; &quot; &lt;&lt; curup &lt;&lt; &quot;\n&quot;;</span><br><span class="line">                if (curlow &gt; curup) &#123;</span><br><span class="line">                    f = false;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                low = curlow, up = curup;</span><br><span class="line">            &#125;</span><br><span class="line">            if (f) r = k - 1;</span><br><span class="line">            if (!f) l = k + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; l &lt;&lt; &quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="感谢观看"><a href="#感谢观看" class="headerlink" title="感谢观看~"></a>感谢观看~</h2>
@@ -137,6 +137,8 @@
     
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2026/04/07/202645-CF2028B-Alices-Adventures-in-Permuting-%E9%A2%98%E8%A7%A3/" rel="prev"><span class="meta-nav">←</span> CF2028B Alice&#39;s Adventures in Permuting 题解</a></span>
     
     
         <span class="nav-next"><a href="/2026/03/04/Array%20and%20GCD/" rel="next">Array and GCD <span class="meta-nav">→</span></a></span>
@@ -198,6 +200,10 @@
       <ul>
         
           <li>
+            <a href="/2026/04/07/202645-CF2028B-Alices-Adventures-in-Permuting-%E9%A2%98%E8%A7%A3/">CF2028B Alice&#39;s Adventures in Permuting 题解</a>
+          </li>
+        
+          <li>
             <a href="/2026/04/05/202645-CF1907D-Jumping-Through-Segments-%E9%A2%98%E8%A7%A3/">CF1907D Jumping Through Segments 题解</a>
           </li>
         
@@ -213,10 +219,6 @@
             <a href="/2026/01/28/CF2158C-Annoying-Game-%E9%A2%98%E8%A7%A3/">CF2158C Annoying Game 题解</a>
           </li>
         
-          <li>
-            <a href="/2025/11/14/CF2163C%20Monopati%E9%A2%98%E8%A7%A3/">CF2163C Monopati题解</a>
-          </li>
-        
       </ul>
     </div>
   </aside>
@@ -226,7 +228,7 @@
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a><span class="tag-list-count">9</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a><span class="tag-list-count">10</span></li></ul>
     </div>
   </aside>
 
